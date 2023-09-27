@@ -5,7 +5,7 @@ class GetFromBD {
     getResource = async (url) => {
         let res = await fetch(url);
         if (!res.ok) {
-            throw new Error('Error!!!')
+            throw new Error(`Что-то пошло не так, статус код запроса - ${res.status}`)
         }
         return await res.json();
     }
