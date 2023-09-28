@@ -9,18 +9,15 @@ import './style/style.scss';
 
 const { getAllCharcters, getCharacters } = GetFromBD();
 
-///test
+// /test
 
 const arrayCharacters = [1, 2, 3, 4, 5, 6, 7, 8, 826];
+getAllCharcters(arrayCharacters).then(res => console.log(res))
+
 const num = 1;
-
-getAllCharcters(arrayCharacters).then(res => {
-  res.map(item => console.log(item.id, item.name, item.gender))
-})
-
 getCharacters(num).then(res => {
-  console.log(res.name)
-})
+  console.log(res)
+});
 
 ///test
 

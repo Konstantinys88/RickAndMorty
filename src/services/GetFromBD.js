@@ -18,17 +18,34 @@ const GetFromBD = () => {
     /**
      * Функция возвращает одного персонажа
      */
-    const getCharacters = (number) => {
-        return getResource(`${_apiKey}${number}`);
+    const getCharacters = async (number) => {
+        const res = await getResource(`${_apiKey}${number}`);
+        return transformCharacters(res);
     }
 
     /**
      * Функция принимает числовой массив типа [1, 2, 3, 4, 5, 6, 7, 8, 826] не более 20 значений
      * Функция возвращает набор персонажей
      */
-    const getAllCharcters = (arr) => {
+    const getAllCharcters = async (arr) => {
         const arrRes = arr.join(',');
-        return getResource(`${_apiKey}[${arrRes}]`);
+        const res = await getResource(`${_apiKey}[${arrRes}]`);
+        return res.map(transformCharacters);
+    }
+
+    /**
+    * Для преобразования данных в обьект
+    */
+    const transformCharacters = (res) => {
+        return {
+            id: res.id,
+            name: res.name,
+            status: res.status,
+            species: res.species,
+            gender: res.gender,
+            origin: res.origin.name,
+            image: res.image,
+        }
     }
 
     return {
