@@ -1,14 +1,14 @@
-// import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import RandomCharacter from '../randomCharacters/RandomCharacters';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Rick and Mory project</h1>
-      </header>
-    </div>
-  );
+
+
+const App = () => {
+	return (
+		<div className="app">
+			<RandomCharacter />
+		</div>
+	);
 }
 
 export default App;

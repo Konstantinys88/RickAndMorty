@@ -1,14 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+
 import App from './components/app/App';
 
 import GetFromBD from './services/GetFromBD';
 
-const getFromBD = new GetFromBD();
+import './style/style.scss';
 
-getFromBD.getAllCharcters().then(res => {
-  res.map(item => console.log(item.id, item.name, item.gender ))
+const { getAllCharcters, getCharacters } = GetFromBD();
+
+const arrayCharacters = [1, 2, 3, 4, 5, 6, 7, 8, 826];
+const num = 1;
+
+getAllCharcters(arrayCharacters).then(res => {
+  res.map(item => console.log(item.id, item.name, item.gender))
+})
+
+getCharacters(num).then(res => {
+  console.log(res.name)
 })
 
 
