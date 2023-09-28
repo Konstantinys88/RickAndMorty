@@ -8,6 +8,11 @@
     box-sizing: border-box;
 }
 
+body {
+    background-image: url('../../src/resources/bg.jpeg');
+    background-size: cover;
+}
+
 ul,
 li,
 dl {

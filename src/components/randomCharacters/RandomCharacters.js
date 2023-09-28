@@ -3,7 +3,11 @@
 const RandomCharacter = () => {
     return (
         <div>
-            Rick and Morty
+            <div>
+                <a href="/">Rick and Morty Portal</a>
+            </div>
+
+            <div><h2>Character / Location / Episode</h2></div>
         </div>
     )
 }
