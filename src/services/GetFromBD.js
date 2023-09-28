@@ -42,4 +42,6 @@ export default GetFromBD;
 
 
 // https://rickandmortyapi.com/documentation/#get-all-characters
-//Всего 826 персонажей
+// Всего 826 персонажей
+// цветовая палитра
+// https://colorswall.com/palette/23454

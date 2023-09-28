@@ -1,12 +1,14 @@
 import './App.scss';
-import RandomCharacter from '../randomCharacters/RandomCharacters';
+
+import PromoHeader from '../promoHeader/PromoHeader';
+// import RandomCharacter from '../randomCharacters/RandomCharacters';
 
 
 
 const App = () => {
 	return (
 		<div className="app">
-			<RandomCharacter />
+			<PromoHeader />
 		</div>
 	);
 }
