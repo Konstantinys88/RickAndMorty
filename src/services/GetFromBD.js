@@ -22,7 +22,6 @@ const GetFromBD = () => {
         const res = await getResource(`${_apiKey}${number}`);
         return transformCharacters(res);
     }
-
     /**
      * Функция принимает числовой массив типа [1, 2, 3, 4, 5, 6, 7, 8, 826] не более 20 значений
      * Функция возвращает набор персонажей
@@ -32,6 +31,16 @@ const GetFromBD = () => {
         const res = await getResource(`${_apiKey}[${arrRes}]`);
         return res.map(transformCharacters);
     }
+
+
+    /**
+     * Принимает строку с именем персонажа и возвращает массив обьектов(мах 20 обьектов) результатов поиска
+     */
+    const getSearcCharacters = async (name) => {
+        const res = await getResource(`${_apiKey}?name=${name}`);
+        return res.results.map(transformCharacters);
+    }
+
 
     /**
     * Для преобразования данных в обьект
@@ -51,6 +60,7 @@ const GetFromBD = () => {
     return {
         getAllCharcters,
         getCharacters,
+        getSearcCharacters,
     }
 }
 
