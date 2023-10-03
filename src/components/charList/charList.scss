@@ -11,6 +11,7 @@
 
     &__item {
         width: 200px;
+        height: 280px;
         background: #6a9c60;
         border: 4px solid black;
         transition: 0.3s transform;
@@ -27,6 +28,7 @@
     }
 
     &__charName {
+
         padding: 15px;
         font-size: 20px;
         font-style: normal;
@@ -35,10 +37,18 @@
         color: black;
         text-align: center;
     }
+
     &__button {
         margin-top: 25px;
         display: flex;
         justify-content: center;
         gap: 25px;
+    }
+
+    &__counter {
+        color: #c8f227;
+        display: flex;
+        align-self: center;
+        padding: 0 15px;
     }
 }

@@ -16,7 +16,7 @@ const RandomCharacter = () => {
 
     useEffect(() => {
         updateChar();
-        console.log('useEffect')
+        // console.log('useEffectRandomChar')
     }, []);
 
     const onCharLoaded = (char) => {
