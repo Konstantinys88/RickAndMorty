@@ -19,24 +19,20 @@ const CharList = () => {
     const [counter, setCounter] = useState(0)
 
 
-
     useEffect(() => {
         onRequest(arr);
         console.log('useEffectList')
     }, [arr]);
 
-
     const onRequest = (arr) => {
         getAllCharcters(arr)
-            .then(onCharListLoaded)
+            .then(onCharListLoaded);
     }
 
     const onCharListLoaded = (newCharList) => {
         setLoading(false);
         setCharList(charList => [...newCharList]);
     }
-
-
 
     const onNext = () => {
         const next = arr.map(item => item + 9);
@@ -49,7 +45,6 @@ const CharList = () => {
         setArr(next);
         setCounter(contenr => contenr - 1)
     }
-
 
     function renderItems(arr) {
         const item = arr.map((item, index) => {
@@ -80,6 +75,8 @@ const CharList = () => {
 
     const disableBack = (counter === 0) ? "disabled" : "";
     const disableNext = (counter === 91) ? "disabled" : "";
+    const colorBack = (disableBack === "disabled") ? {'background' : 'red'} : {'background' : ''};
+    const colorNext = (disableNext === "disabled") ? {'background' : 'red'} : {'background' : ''};
 
 
     return (
@@ -90,17 +87,18 @@ const CharList = () => {
                 <button
                     onClick={onBack}
                     disabled={disableBack}
+                    style={colorBack}
                     className='button'>назад</button>
                 <h2 className='charList__counter'>{counter + 1}</h2>
                 <button
                     onClick={onNext}
                     disabled={disableNext}
+                    style={colorNext}
                     className='button'>вперед</button>
             </div>
         </div >
 
     )
-
 }
 
 export default CharList;
