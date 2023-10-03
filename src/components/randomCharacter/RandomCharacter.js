@@ -4,11 +4,14 @@ import { useState, useEffect } from 'react';
 
 import GetFromBD from '../../services/GetFromBD';
 import rickAndMorty from '../../resources/pngwing.com.png';
+import Spinner from '../spinner/Spinner';
 
 
 const RandomCharacter = () => {
 
     const [char, setChar] = useState({});
+    const [loading, setLoading] = useState(true);
+    
     const { getCharacters } = GetFromBD();
 
     useEffect(() => {
@@ -17,8 +20,13 @@ const RandomCharacter = () => {
     }, []);
 
     const onCharLoaded = (char) => {
+        setLoading(false);
         setChar(char);
     }
+
+    // const onCharLoading = () => {
+    //     setLoading(true);
+    // }
 
     const updateChar = () => {
         const id = Math.floor(Math.random() * (826 - 1)) + 1;
@@ -44,9 +52,14 @@ const RandomCharacter = () => {
         )
     }
 
+    const spinner = loading ? <Spinner/> : null;
+    const content = !(loading || !char) ? <View char={char} /> : null;
+
+
     return (
         <div className='randomCharacter'>
-            <View char={char} />
+            {spinner}
+            {content}
             <div className="randomCharacter__tryIt">
                 <p className="randomCharacter__tryIt-text">Random character for today! <br /> Do you want to get to know him better?</p>
                 <p className="randomCharacter__tryIt-text">Or choose another one</p>

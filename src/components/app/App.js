@@ -6,6 +6,7 @@ import CharList from '../charList/CharList';
 
 
 
+
 const App = () => {
 	return (
 		<div className="app">
