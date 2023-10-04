@@ -6,6 +6,7 @@ import './charList.scss';
 import { useState, useEffect } from 'react';
 import GetFromBD from '../../services/GetFromBD';
 import Spinner from '../spinner/Spinner';
+import ErrorMesage from '../error/Error';
 
 const CharList = () => {
 
@@ -17,6 +18,7 @@ const CharList = () => {
     const [charList, setCharList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [counter, setCounter] = useState(0)
+    const [error, setError] = useState(false);
 
 
     useEffect(() => {
@@ -26,12 +28,18 @@ const CharList = () => {
 
     const onRequest = (arr) => {
         getAllCharcters(arr)
-            .then(onCharListLoaded);
+            .then(onCharListLoaded)
+            .catch(onError);
     }
 
     const onCharListLoaded = (newCharList) => {
-        setLoading(false);
         setCharList(charList => [...newCharList]);
+        setLoading(false);
+    }
+
+    const onError = () => {
+        setLoading(false);
+        setError(true);
     }
 
     const onNext = () => {
@@ -51,7 +59,7 @@ const CharList = () => {
             return (
                 <div key={item.id} className="charList__item">
                     <div>
-                        <img className="charList__itemImg" src={item.image} alt="img" />
+                        <img className="charList__itemImg" src={item.image} alt={item.image} />
                     </div>
 
                     <div className="charList__charName">
@@ -70,7 +78,8 @@ const CharList = () => {
     const items = renderItems(charList);
 
     const spinner = loading ? <Spinner /> : null;
-    const content = !(loading || !charList) ? items : null;
+    const errorMesage = error ? <ErrorMesage /> : null;
+    const content = !(loading || error || !charList) ? items : null;
 
 
     const disableBack = (counter === 0) ? "disabled" : "";
@@ -82,6 +91,7 @@ const CharList = () => {
     return (
         <div className="charList">
             {spinner}
+            {errorMesage}
             {content}
             <div className='charList__button'>
                 <button

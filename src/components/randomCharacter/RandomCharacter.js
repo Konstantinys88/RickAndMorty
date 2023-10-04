@@ -5,32 +5,36 @@ import { useState, useEffect } from 'react';
 import GetFromBD from '../../services/GetFromBD';
 import rickAndMorty from '../../resources/pngwing.com.png';
 import Spinner from '../spinner/Spinner';
+import ErrorMesage from '../error/Error';
 
 
 const RandomCharacter = () => {
 
     const [char, setChar] = useState({});
     const [loading, setLoading] = useState(true);
-    
+    const [error, setError] = useState(false);
+
     const { getCharacters } = GetFromBD();
 
     useEffect(() => {
         updateChar();
-        // console.log('useEffectRandomChar')
     }, []);
 
     const onCharLoaded = (char) => {
-        setLoading(false);
         setChar(char);
+        setLoading(false);
     }
-
-    // const onCharLoading = () => {
-    //     setLoading(true);
-    // }
 
     const updateChar = () => {
         const id = Math.floor(Math.random() * (826 - 1)) + 1;
-        getCharacters(id).then(onCharLoaded);
+        getCharacters(id)
+            .then(onCharLoaded)
+            .catch(onError);
+    }
+
+    const onError = () => {
+        setLoading(false);
+        setError(true);
     }
 
     const View = ({ char }) => {
@@ -52,13 +56,15 @@ const RandomCharacter = () => {
         )
     }
 
-    const spinner = loading ? <Spinner/> : null;
-    const content = !(loading || !char) ? <View char={char} /> : null;
+    const spinner = loading ? <Spinner /> : null;
+    const errorMesage = error ? <ErrorMesage /> : null;
+    const content = !(loading || error || !char) ? <View char={char} /> : null;
 
 
     return (
         <div className='randomCharacter'>
             {spinner}
+            {errorMesage}
             {content}
             <div className="randomCharacter__tryIt">
                 <p className="randomCharacter__tryIt-text">Random character for today! <br /> Do you want to get to know him better?</p>
