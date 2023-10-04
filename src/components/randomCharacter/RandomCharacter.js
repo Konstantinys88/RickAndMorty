@@ -1,9 +1,10 @@
 import './randomCharacter.scss';
 import '../../style/button.scss';
-import { useState, useEffect } from 'react';
 
-import GetFromBD from '../../services/GetFromBD';
 import rickAndMorty from '../../resources/pngwing.com.png';
+
+import { useState, useEffect } from 'react';
+import GetFromBD from '../../services/GetFromBD';
 import Spinner from '../spinner/Spinner';
 import ErrorMesage from '../error/Error';
 
