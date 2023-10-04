@@ -3,7 +3,9 @@ import './App.scss';
 import Header from '../header/Header'
 import RandomCharacter from '../randomCharacter/RandomCharacter';
 import CharList from '../charList/CharList';
-// import Skeleton from '../skeleton/Skeleton';
+import CharInfo from '../charInfo/CharInfo';
+
+
 
 
 
@@ -15,7 +17,9 @@ const App = () => {
 			<RandomCharacter />
 			<div className='app__main'>
 				<CharList />
-				{/* <Skeleton/> */}
+				<CharInfo />
+
+				
 
 
 			</div>

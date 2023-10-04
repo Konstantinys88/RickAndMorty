@@ -20,10 +20,11 @@ const CharList = () => {
     const [counter, setCounter] = useState(0)
     const [error, setError] = useState(false);
 
+    // console.log(charList)
+
 
     useEffect(() => {
         onRequest(arr);
-        console.log('useEffectList')
     }, [arr]);
 
     const onRequest = (arr) => {

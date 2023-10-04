@@ -54,6 +54,7 @@ const GetFromBD = () => {
             gender: res.gender,
             origin: res.origin.name,
             image: res.image,
+            episode: res.episode.map(item => item.slice(40)),
         }
     }
 
