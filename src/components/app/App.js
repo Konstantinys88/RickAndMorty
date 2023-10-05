@@ -5,19 +5,24 @@ import RandomCharacter from '../randomCharacter/RandomCharacter';
 import CharList from '../charList/CharList';
 import CharInfo from '../charInfo/CharInfo';
 
-
-
-
+import { useState } from 'react';
 
 
 const App = () => {
+
+	const [selected, setSelected] = useState(1);
+
+	const onCharSelected = (id) => {
+		setSelected(id);
+	}
+
 	return (
 		<div className="app">
 			<Header />
-			<RandomCharacter />
+			<RandomCharacter  />
 			<div className='app__main'>
-				<CharList />
-				<CharInfo />
+				<CharList onCharSelected={onCharSelected}/>
+				<CharInfo charId={selected}/>
 
 				
 

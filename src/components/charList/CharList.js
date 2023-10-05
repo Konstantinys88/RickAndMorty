@@ -8,20 +8,16 @@ import GetFromBD from '../../services/GetFromBD';
 import Spinner from '../spinner/Spinner';
 import ErrorMesage from '../error/Error';
 
-const CharList = () => {
+const CharList = (props) => {
 
     const { getAllCharcters } = GetFromBD();
     const arrayCharacters = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const [arr, setArr] = useState(arrayCharacters);
 
-
     const [charList, setCharList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [counter, setCounter] = useState(0)
     const [error, setError] = useState(false);
-
-    // console.log(charList)
-
 
     useEffect(() => {
         onRequest(arr);
@@ -58,7 +54,9 @@ const CharList = () => {
     function renderItems(arr) {
         const item = arr.map((item, index) => {
             return (
-                <div key={item.id} className="charList__item">
+                <div key={item.id} 
+                onClick={() => props.onCharSelected(item.id)} 
+                className="charList__item">
                     <div>
                         <img className="charList__itemImg" src={item.image} alt={item.image} />
                     </div>

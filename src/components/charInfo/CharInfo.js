@@ -1,26 +1,23 @@
 import './charInfo.scss';
 
-import morty from '../../resources/morty.jpeg'
-
 import { useState, useEffect } from 'react';
 
 import GetFromBD from '../../services/GetFromBD';
 import Spinner from '../spinner/Spinner';
 import ErrorMesage from '../error/Error';
 
-// import Skeleton from '../skeleton/Skeleton';
 
-const CharInfo = () => {
+const CharInfo = (props) => {
 
     const [char, setChar] = useState({});
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
 
     const { getCharacters } = GetFromBD();
 
     useEffect(() => {
         updateChar();
-    }, []);
+    }, [props.charId]);
 
     const onCharLoaded = (char) => {
         setChar(char);
@@ -28,8 +25,11 @@ const CharInfo = () => {
     }
 
     const updateChar = () => {
-        // const id = Math.floor(Math.random() * (826 - 1)) + 1;
-        getCharacters(4)
+        const { charId } = props;
+        if (!charId) {
+            return;
+        }
+        getCharacters(charId)
             .then(onCharLoaded)
             .catch(onError);
     }
@@ -39,49 +39,49 @@ const CharInfo = () => {
         setError(true);
     }
 
-    const { name, image, episode } = char;
 
-    console.log(episode)
-
-    function renderItems(arr) {
-        const item = arr?.map((item, index) => {
-            if (index > 5) return;
-            return (
-                <li>Episode: {item}</li>
-            )
-        });
+    const View = ({ char }) => {
+        const { image, name, episode } = char;
         return (
-            <ul>
-                {item}
-                ...
-            </ul>
+            <>
+                <div className='charInfo__img'>
+                    <img src={image} alt={name} />
+                </div>
+                <div className="charInfo__name">
+                    <p>{name}</p>
+                </div>
+                <div className="charInfo__episode">
+                    <ul>
+                        {
+                            episode?.map((item, index) => {
+                                if (index > 5) return;
+                                return (
+                                    <li key={index}>Episode: {item}</li>
+                                )
+                            })
+                        }
+                    </ul>
+                    Total episodes with this character {episode?.length}.
+                </div>
+                <div className="charInfo__button">
+                    <a href='/' className='button'>Character page</a>
+                </div>
+            </>
         )
     }
 
-    const items = renderItems(episode);
-
     const spinner = loading ? <Spinner /> : null;
     const errorMesage = error ? <ErrorMesage /> : null;
-    const content = !(loading || error || !char) ? items : null;
+    const content = !(loading || error || !char) ? <View char={char} /> : null;
 
     return (
         <div className="charInfo">
-            <div className='charInfo__img'>
-                <img src={image} alt={name} />
-            </div>
-            <div className="charInfo__name">
-                <p>{name}</p>
-            </div>
-            <div className="charInfo__episode">
-                {spinner}
-                {errorMesage}
-                {content}
-            </div>
-            <div className="charInfo__button">
-                <a href='/' className='button'>Character page</a>
-            </div>
+            {errorMesage}
+            {spinner}
+            {content}
         </div>
     )
 }
+
 
 export default CharInfo
