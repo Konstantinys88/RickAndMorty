@@ -18,12 +18,17 @@ const RandomCharacter = () => {
     const { getCharacters } = GetFromBD();
 
     useEffect(() => {
+        onCharLoading(false);
         updateChar();
     }, []);
 
     const onCharLoaded = (char) => {
         setChar(char);
         setLoading(false);
+    }
+
+    const onCharLoading = () => {
+        setLoading(true);
     }
 
     const updateChar = () => {

@@ -16,12 +16,17 @@ const CharInfo = (props) => {
     const { getCharacters } = GetFromBD();
 
     useEffect(() => {
+        onCharLoading();
         updateChar();
     }, [props.charId]);
 
     const onCharLoaded = (char) => {
         setChar(char);
         setLoading(false);
+    }
+
+    const onCharLoading = () => {
+        setLoading(true);
     }
 
     const updateChar = () => {

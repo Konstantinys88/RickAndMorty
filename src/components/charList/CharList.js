@@ -20,6 +20,7 @@ const CharList = (props) => {
     const [error, setError] = useState(false);
 
     useEffect(() => {
+        onCharLoading(false);
         onRequest(arr);
     }, [arr]);
 
@@ -32,6 +33,10 @@ const CharList = (props) => {
     const onCharListLoaded = (newCharList) => {
         setCharList(charList => [...newCharList]);
         setLoading(false);
+    }
+
+    const onCharLoading = () => {
+        setLoading(true);
     }
 
     const onError = () => {
