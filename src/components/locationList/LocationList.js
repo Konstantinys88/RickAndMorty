@@ -19,6 +19,7 @@ const LocationList = () => {
     const [counter, setCounter] = useState(0);
     const [error, setError] = useState(false);
 
+
     useEffect(() => {
         // onLocationLoading(false);
         onRequestLocation(arr);
@@ -60,23 +61,19 @@ const LocationList = () => {
 
     const renderLocationLost = (arr) => {
         const item = arr.map((item, index) => {
-
-            // console.log(item.residentsId);
-            // let residentName = getAllCharcters(item.residentsId).then(res => res.map(item => item.name))
-            // residentName.then(res => console.log(res))
-            // выташить массив имен
-
             return (
                 <li key={item.id} className='location__item'>
                     <div className="location__itemWrapper">
                         <p>The name of the location: {item.name}</p>
                         <p>The type of the location: {item.type}</p>
-                        <p>The dimension in which the location is located: {item.dimension === "unknown"? 'Unknown dimension': item.dimension}</p>
-                        {/* <p>Residents:{item.residentsId}</p> */}
+                        <p>The dimension in which the location is located: {item.dimension === "unknown" ? 'Unknown dimension' : item.dimension}</p>
+                        {/* сюда нужно вставить массив или не массив с именами по id */}
+                        <p>Residents:{}</p>
                     </div>
                 </li>
             )
         });
+
         return (
             <ul className="location__list">
                 {item}
@@ -93,8 +90,8 @@ const LocationList = () => {
 
     const disableBack = (counter === 0) ? "disabled" : "";
     const disableNext = (counter === 13) ? "disabled" : "";
-    const colorBack = (disableBack === "disabled") ? {'background' : 'red'} : {'background' : ''};
-    const colorNext = (disableNext === "disabled") ? {'background' : 'red'} : {'background' : ''};
+    const colorBack = (disableBack === "disabled") ? { 'background': 'red' } : { 'background': '' };
+    const colorNext = (disableNext === "disabled") ? { 'background': 'red' } : { 'background': '' };
 
     return (
         <div className='location'>
@@ -118,8 +115,6 @@ const LocationList = () => {
 
         </div>
     )
-
-
 }
 
 export default LocationList;

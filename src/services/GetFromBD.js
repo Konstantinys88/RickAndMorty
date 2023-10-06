@@ -33,7 +33,6 @@ const GetFromBD = () => {
     }
 
 
-
     const getAllLocation = async (arr) => {
         const arrRes = arr.join(',');
         const res = await getResource(`https://rickandmortyapi.com/api/location/[${arrRes}]`);
