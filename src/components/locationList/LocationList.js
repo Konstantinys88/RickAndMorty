@@ -62,9 +62,9 @@ const LocationList = () => {
         const item = arr.map((item, index) => {
 
             // console.log(item.residentsId);
-            // const residentName = [];
-            // const residentName = getAllCharcters(item.residentsId).then(res => res.map(item => item.name))
-            // console.log(residentName)
+            // let residentName = getAllCharcters(item.residentsId).then(res => res.map(item => item.name))
+            // residentName.then(res => console.log(res))
+            // выташить массив имен
 
             return (
                 <li key={item.id} className='location__item'>

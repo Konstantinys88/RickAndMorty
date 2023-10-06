@@ -19,7 +19,8 @@ const CharList = (props) => {
     const [counter, setCounter] = useState(0)
     const [error, setError] = useState(false);
 
-   
+    // const names = charList.map(item => item.name)
+    // console.log(names)
 
     useEffect(() => {
         onCharLoading(false);
@@ -60,6 +61,7 @@ const CharList = (props) => {
 
     function renderItems(arr) {
         const item = arr.map((item, index) => {
+
             return (
                 <div key={item.id} 
                 onClick={() => props.onCharSelected(item.id)} 

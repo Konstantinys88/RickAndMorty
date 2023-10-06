@@ -20,7 +20,7 @@ const App = () => {
 	return (
 		<div className="app">
 			<Header />
-			{/* <RandomCharacter  /> */}
+			<RandomCharacter  />
 			<div className='app__main'>
 				{/* <CharList onCharSelected={onCharSelected}/>
 				<CharInfo charId={selected}/> */}
