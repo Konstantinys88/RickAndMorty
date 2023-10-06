@@ -33,6 +33,14 @@ const GetFromBD = () => {
     }
 
 
+
+    const getAllLocation = async (arr) => {
+        const arrRes = arr.join(',');
+        const res = await getResource(`https://rickandmortyapi.com/api/location/[${arrRes}]`);
+        return res.map(transformLocation);
+    }
+
+
     /**
      * Принимает строку с именем персонажа и возвращает массив обьектов(мах 20 обьектов) результатов поиска
      */
@@ -58,10 +66,21 @@ const GetFromBD = () => {
         }
     }
 
+    const transformLocation = (res) => {
+        return {
+            id: res.id,
+            name: res.name,
+            type: res.type,
+            dimension: res.dimension,
+            residentsId: res.residents.map(item => item.slice(42)),
+        }
+    }
+
     return {
         getAllCharcters,
         getCharacters,
         getSearcCharacters,
+        getAllLocation,
     }
 }
 

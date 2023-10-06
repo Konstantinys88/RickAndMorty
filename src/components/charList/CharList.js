@@ -19,6 +19,8 @@ const CharList = (props) => {
     const [counter, setCounter] = useState(0)
     const [error, setError] = useState(false);
 
+   
+
     useEffect(() => {
         onCharLoading(false);
         onRequest(arr);
@@ -79,6 +81,8 @@ const CharList = (props) => {
         )
     }
 
+   
+
     const items = renderItems(charList);
 
     const spinner = loading ? <Spinner /> : null;
@@ -87,10 +91,9 @@ const CharList = (props) => {
 
 
     const disableBack = (counter === 0) ? "disabled" : "";
-    const disableNext = (counter === 91) ? "disabled" : "";
+    const disableNext = (charList.length < 9) ? "disabled" : "";
     const colorBack = (disableBack === "disabled") ? {'background' : 'red'} : {'background' : ''};
     const colorNext = (disableNext === "disabled") ? {'background' : 'red'} : {'background' : ''};
-
 
     return (
         <div className="charList">

@@ -5,8 +5,9 @@ import RandomCharacter from '../randomCharacter/RandomCharacter';
 import CharList from '../charList/CharList';
 import CharInfo from '../charInfo/CharInfo';
 
-import { useState } from 'react';
+import LocationList from '../locationList/LocationList';
 
+import { useState } from 'react';
 
 const App = () => {
 
@@ -19,11 +20,12 @@ const App = () => {
 	return (
 		<div className="app">
 			<Header />
-			<RandomCharacter  />
+			{/* <RandomCharacter  /> */}
 			<div className='app__main'>
-				<CharList onCharSelected={onCharSelected}/>
-				<CharInfo charId={selected}/>
-
+				{/* <CharList onCharSelected={onCharSelected}/>
+				<CharInfo charId={selected}/> */}
+				
+				<LocationList/>
 				
 
 
