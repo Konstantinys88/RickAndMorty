@@ -1,63 +1,119 @@
 import './locationList.scss';
 
 import GetFromBD from '../../services/GetFromBD';
+import Spinner from '../spinner/Spinner';
+import ErrorMesage from '../error/Error';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 
 const LocationList = () => {
 
-    const [openResident, setOpenResident] = useState(false);
+    const { getAllLocation, getAllCharcters } = GetFromBD();
+    const arrayCharacters = [1,2,3,4,5,6,7,8,9];
+    const [arr, setArr] = useState(arrayCharacters);
+
+    const [locationList, setLocationList] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [counter, setCounter] = useState(0);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        // onLocationLoading(false);
+        onRequestLocation(arr);
+    }, [arr]);
+
+    const onRequestLocation = (arr) => {
+        getAllLocation(arr)
+            .then(onCharListLoaded)
+            .catch(onError);
+    }
+
+    const onCharListLoaded = (newLocationList) => {
+        setLocationList(locationList => [...newLocationList]);
+        setLoading(false);
+    }
+
+    //страница скачет из-за спинера
+    const onLocationLoading = () => {
+        setLoading(true);
+    }
+
+    const onError = () => {
+        setLoading(false);
+        setError(true);
+    }
+
+    const onNext = () => {
+        const next = arr.map(item => item + 9);
+        setArr(next);
+        setCounter(contenr => contenr + 1)
+    }
+
+    const onBack = () => {
+        const next = arr.map(item => item - 9);
+        setArr(next);
+        setCounter(contenr => contenr - 1)
+    }
 
 
+    const renderLocationLost = (arr) => {
+        const item = arr.map((item, index) => {
 
+            // console.log(item.residentsId);
+            // const residentName = [];
+            // const residentName = getAllCharcters(item.residentsId).then(res => res.map(item => item.name))
+            // console.log(residentName)
 
-    const Viev = () => {
-
-        let stuleResident = {'display': 'none', 'opacity': 0};
-        if(openResident) {
-            stuleResident = {'display': 'flex', 'opacity': 1}
-        }
-
+            return (
+                <li key={item.id} className='location__item'>
+                    <div className="location__itemWrapper">
+                        <p>The name of the location: {item.name}</p>
+                        <p>The type of the location: {item.type}</p>
+                        <p>The dimension in which the location is located: {item.dimension === "unknown"? 'Unknown dimension': item.dimension}</p>
+                        {/* <p>Residents:{item.residentsId}</p> */}
+                    </div>
+                </li>
+            )
+        });
         return (
-            <>
-                <ul className="location__list">
-                    <li className='location__item'>
-                        <div className="location__itemWrapper">
-                            <p>The name of the location: Earth</p>
-                            <p>The type of the location: Planet</p>
-                            <p>The dimension in which the location is located: Dimension C-137</p>
-                        </div>
-                        <button onClick={()=>{setOpenResident(!openResident)}} className='button location__button'>Residents</button>
-                        <div className='location__residents' style={stuleResident} >
-                            <p>Resident 1</p>
-                            <p>Resident 2</p>
-                            <p>Resident 3</p>
-                        </div>
-                    </li>
-                    <li className='location__item'>
-                        <div className="location__itemWrapper">
-                            <p>The name of the location: Earth</p>
-                            <p>The type of the location: Planet</p>
-                            <p>The dimension in which the location is located: Dimension C-137</p>
-                        </div>
-                        <button onClick={()=>{setOpenResident(!openResident)}} className='button location__button'>Residents</button>
-                        <div className='location__residents' style={stuleResident} >
-                            <p>Resident 1</p>
-                            <p>Resident 2</p>
-                            <p>Resident 3</p>
-                        </div>
-                    </li>
-                </ul>
-            </>
+            <ul className="location__list">
+                {item}
+            </ul>
         )
     }
 
 
+    const items = renderLocationLost(locationList);
+
+    const spinner = loading ? <Spinner /> : null;
+    const errorMesage = error ? <ErrorMesage /> : null;
+    const content = !(loading || error || !locationList) ? items : null;
+
+    const disableBack = (counter === 0) ? "disabled" : "";
+    const disableNext = (counter === 13) ? "disabled" : "";
+    const colorBack = (disableBack === "disabled") ? {'background' : 'red'} : {'background' : ''};
+    const colorNext = (disableNext === "disabled") ? {'background' : 'red'} : {'background' : ''};
+
     return (
         <div className='location'>
-            <Viev />
+            {spinner}
+            {errorMesage};
+            {content};
+            <div className='location__button'>
+                <button
+                    onClick={onBack}
+                    disabled={disableBack}
+                    style={colorBack}
+                    className='button'>назад</button>
+                <h2 className='location__counter'>{counter + 1}</h2>
+                <button
+                    onClick={onNext}
+                    disabled={disableNext}
+                    style={colorNext}
+                    className='button'>вперед</button>
+            </div>
 
 
         </div>
