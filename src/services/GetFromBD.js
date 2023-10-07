@@ -39,6 +39,8 @@ const GetFromBD = () => {
         return res.map(transformLocation);
     }
 
+    // console.log(getAllLocation([1,2]))
+
 
     /**
      * Принимает строку с именем персонажа и возвращает массив обьектов(мах 20 обьектов) результатов поиска
@@ -74,6 +76,8 @@ const GetFromBD = () => {
             residentsId: res.residents.map(item => item.slice(42)),
         }
     }
+
+
 
     return {
         getAllCharcters,

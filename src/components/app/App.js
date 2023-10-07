@@ -22,10 +22,10 @@ const App = () => {
 			<Header />
 			<RandomCharacter  />
 			<div className='app__main'>
-				{/* <CharList onCharSelected={onCharSelected}/>
-				<CharInfo charId={selected}/> */}
+				<CharList onCharSelected={onCharSelected}/>
+				<CharInfo charId={selected}/>
 				
-				<LocationList/>
+				{/* <LocationList/> */}
 				
 
 

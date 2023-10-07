@@ -52,11 +52,11 @@ const RandomCharacter = () => {
                     <img className='randomCharacter__info-img' src={image} alt="morty" />
                 </div>
                 <div className="randomCharacter__descr">
-                    <p className='randomCharacter__descr-text'>Name: {name}</p>
-                    <p className='randomCharacter__descr-text'>Origin: {origin}</p>
-                    <p className='randomCharacter__descr-text'>Gender: {gender}</p>
-                    <p className='randomCharacter__descr-text'>Species: {species}</p>
-                    <p className='randomCharacter__descr-text'>Status: {status}</p>
+                    <p className='randomCharacter__descr-text'>Name: {name === 'unknown' ? 'Unknown' : name}</p>
+                    <p className='randomCharacter__descr-text'>Origin: {origin === 'unknown' ? 'Unknown' : origin}</p>
+                    <p className='randomCharacter__descr-text'>Gender: {gender === 'unknown' ? 'Unknown' : gender}</p>
+                    <p className='randomCharacter__descr-text'>Species: {species === 'unknown' ? 'Unknown' : species}</p>
+                    <p className='randomCharacter__descr-text'>Status: {status === 'unknown' ? 'Unknown' : status}</p>
                 </div>
             </div>
         )

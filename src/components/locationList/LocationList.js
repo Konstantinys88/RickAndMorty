@@ -10,14 +10,17 @@ import { useState, useEffect } from 'react';
 
 const LocationList = () => {
 
-    const { getAllLocation, getAllCharcters } = GetFromBD();
-    const arrayCharacters = [1,2,3,4,5,6,7,8,9];
+    const { getAllLocation } = GetFromBD();
+    const arrayCharacters = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const [arr, setArr] = useState(arrayCharacters);
 
     const [locationList, setLocationList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [counter, setCounter] = useState(0);
     const [error, setError] = useState(false);
+
+    // locationList.forEach(item => console.log(item.name))
+    // console.log(locationList)
 
 
     useEffect(() => {
@@ -67,9 +70,11 @@ const LocationList = () => {
                         <p>The name of the location: {item.name}</p>
                         <p>The type of the location: {item.type}</p>
                         <p>The dimension in which the location is located: {item.dimension === "unknown" ? 'Unknown dimension' : item.dimension}</p>
-                        {/* сюда нужно вставить массив или не массив с именами по id */}
-                        <p>Residents:{}</p>
                     </div>
+                    <div className="location__linKWrapper">
+                        <a href='/' className='button location__link'>Page location</a>
+                    </div>
+
                 </li>
             )
         });
@@ -111,8 +116,6 @@ const LocationList = () => {
                     style={colorNext}
                     className='button'>вперед</button>
             </div>
-
-
         </div>
     )
 }
