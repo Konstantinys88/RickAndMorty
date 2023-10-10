@@ -2,7 +2,7 @@
 
 const GetFromBD = () => {
 
-    const _apiKey = `https://rickandmortyapi.com/api/character/`
+    const _apiKey = `https://rickandmortyapi.com/api/character/`;
 
     /**
      * Функция отправляет запрос на сервер, возвращает обьект в форматек json.
@@ -22,6 +22,7 @@ const GetFromBD = () => {
         const res = await getResource(`${_apiKey}${number}`);
         return transformCharacters(res);
     }
+
     /**
      * Функция принимает числовой массив типа [1, 2, 3, 4, 5, 6, 7, 8, 826] не более 20 значений
      * Функция возвращает набор персонажей
@@ -32,14 +33,25 @@ const GetFromBD = () => {
         return res.map(transformCharacters);
     }
 
-
+    /**
+     * Функция принимает числовой массив типа [1, 2, 3, 4, 5, 6, 7, 8, 826] не более 20 значений
+     * Функция возвращает набор локаций
+     */
     const getAllLocation = async (arr) => {
         const arrRes = arr.join(',');
         const res = await getResource(`https://rickandmortyapi.com/api/location/[${arrRes}]`);
         return res.map(transformLocation);
     }
 
-    // console.log(getAllLocation([1,2]))
+    /**
+     * Функция принимает числовой массив типа [1, 2, 3, 4, 5, 6, 7, 8, 826] не более 20 значений
+     * Функция возвращает набор локаций
+     */
+    const getAllEpisode = async (arr) => {
+        const arrRes = arr.join(',');
+        const res = await getResource(`https://rickandmortyapi.com/api/episode/[${arrRes}]`);
+        return res.map(transformEpisode);
+    }
 
 
     /**
@@ -52,7 +64,7 @@ const GetFromBD = () => {
 
 
     /**
-    * Для преобразования данных в обьект
+    * Для преобразования данных о персонажах в обьект
     */
     const transformCharacters = (res) => {
         return {
@@ -73,7 +85,18 @@ const GetFromBD = () => {
             name: res.name,
             type: res.type,
             dimension: res.dimension,
-            residentsId: res.residents.map(item => item.slice(42)),
+
+            characters: res.residents.map(item => item.slice(42)),
+        }
+    }
+
+    const transformEpisode = (res) => {
+        return {
+            id: res.id,
+            name: res.name,
+            airDate: res.air_date,
+            episode: res.episode,
+            residentsId: res.characters.map(item => item.slice(42)),
         }
     }
 
@@ -84,6 +107,7 @@ const GetFromBD = () => {
         getCharacters,
         getSearcCharacters,
         getAllLocation,
+        getAllEpisode,
     }
 }
 

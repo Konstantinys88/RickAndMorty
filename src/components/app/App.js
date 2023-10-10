@@ -1,11 +1,13 @@
 import './App.scss';
 
 import Header from '../header/Header'
+import CharPages from '../pages/charPages/CharPages';
 import LocationList from '../locationList/LocationList';
+import EpisodeList from '../episodeList/EpisodeList';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import CharPages from '../pages/charPages/CharPages';
+
 
 const App = () => {
 
@@ -23,6 +25,9 @@ const App = () => {
 							</Route>
 							<Route exact path='/location'>
 								<LocationList />
+							</Route>
+							<Route exact path='/episode'>
+								<EpisodeList />
 							</Route>
 						</Switch>
 					</div>
