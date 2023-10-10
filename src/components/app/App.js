@@ -13,10 +13,8 @@ const App = () => {
 
 	return (
 		<Router>
-
 			<div className="app">
 				<div className="app__container">
-					
 					<Header />
 					<div className='app__main'>
 						<Switch>
@@ -28,11 +26,8 @@ const App = () => {
 							</Route>
 						</Switch>
 					</div>
-
 				</div>
-
 			</div>
-
 		</Router>
 	);
 }

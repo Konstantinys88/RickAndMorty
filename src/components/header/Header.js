@@ -1,7 +1,7 @@
 
 import './header.scss';
 
-import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom';
 
 
 const Header = () => {
@@ -11,11 +11,11 @@ const Header = () => {
                 <Link to='/' className="header__text">Rick and Morty Portal</Link>
             </div>
             <div className="header__pages">
-                <Link to="/" className="header__text">Character</Link>
+                <NavLink exact activeStyle={{ 'color': '#c8f227' }} to="/" className="header__text">Character</NavLink>
                 <span className="header__span"> / </span>
-                <Link to="/location" className="header__text">Location</Link>
+                <NavLink exact activeStyle={{ 'color': '#c8f227' }} to="/location" className="header__text">Location</NavLink>
                 <span className="header__span"> / </span>
-                <Link to="/" className="header__text">Episode</Link>
+                <NavLink exact activeStyle={{ 'color': '#c8f227' }} to="/episode" className="header__text">Episode</NavLink>
             </div>
         </div>
     )
