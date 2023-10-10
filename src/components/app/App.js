@@ -1,36 +1,39 @@
 import './App.scss';
 
 import Header from '../header/Header'
-import RandomCharacter from '../randomCharacter/RandomCharacter';
-import CharList from '../charList/CharList';
-import CharInfo from '../charInfo/CharInfo';
-
 import LocationList from '../locationList/LocationList';
 
-import { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+import CharPages from '../pages/charPages/CharPages';
 
 const App = () => {
 
-	const [selected, setSelected] = useState(1);
 
-	const onCharSelected = (id) => {
-		setSelected(id);
-	}
 
 	return (
-		<div className="app">
-			<Header />
-			<RandomCharacter  />
-			<div className='app__main'>
-				<CharList onCharSelected={onCharSelected}/>
-				<CharInfo charId={selected}/>
-				
-				{/* <LocationList/> */}
-				
+		<Router>
 
+			<div className="app">
+				<div className="app__container">
+					
+					<Header />
+					<div className='app__main'>
+						<Switch>
+							<Route exact path='/'>
+								<CharPages />
+							</Route>
+							<Route exact path='/location'>
+								<LocationList />
+							</Route>
+						</Switch>
+					</div>
+
+				</div>
 
 			</div>
-		</div>
+
+		</Router>
 	);
 }
 

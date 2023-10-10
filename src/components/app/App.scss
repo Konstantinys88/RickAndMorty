@@ -1,7 +1,15 @@
 .app {
-  &__main {
-    display: flex;
-  }
-  
-}
+	background-image: url('../../resources/bg.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+	&__container {
+		width: 1100px;
+		margin: 0 auto;
+		padding: 50px 0 50px 0;
+		position: relative;
+	}
 
+	&__charList {
+		display: flex;
+	}
+}

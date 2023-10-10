@@ -1,18 +1,21 @@
 
 import './header.scss';
 
+import { Link } from 'react-router-dom/cjs/react-router-dom';
+
+
 const Header = () => {
     return (
         <div className="header">
             <div className="header__main">
-                <a href="/" className="header__text">Rick and Morty Portal</a>
+                <Link to='/' className="header__text">Rick and Morty Portal</Link>
             </div>
             <div className="header__pages">
-                <a href="/" className="header__text">Character</a>
+                <Link to="/" className="header__text">Character</Link>
                 <span className="header__span"> / </span>
-                <a href="/" className="header__text">Location</a>
+                <Link to="/location" className="header__text">Location</Link>
                 <span className="header__span"> / </span>
-                <a href="/" className="header__text">Episode</a>
+                <Link to="/" className="header__text">Episode</Link>
             </div>
         </div>
     )
