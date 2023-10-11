@@ -8,6 +8,8 @@ import GetFromBD from '../../services/GetFromBD';
 import Spinner from '../spinner/Spinner';
 import ErrorMesage from '../error/Error';
 
+import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom';
+
 const CharList = (props) => {
 
     const { getAllCharcters } = GetFromBD();
@@ -62,16 +64,26 @@ const CharList = (props) => {
     function renderItems(arr) {
         const item = arr.map((item, index) => {
 
+            let nameChar = ''
+            if(item.name.length > 19) {
+                nameChar = item.name.slice(0,27) + '...';
+            } else {
+                nameChar = item.name;
+            }
+
             return (
-                <div key={item.id} 
-                onClick={() => props.onCharSelected(item.id)} 
-                className="charList__item">
+                <div key={item.id}
+                    onClick={() => props.onCharSelected(item.id)}
+                    className="charList__item">
                     <div>
                         <img className="charList__itemImg" src={item.image} alt={item.image} />
                     </div>
 
                     <div className="charList__charName">
-                        <p>{item.name}</p>
+                        <p>{nameChar}</p>
+                    </div>
+                    <div className="charList__buttonImg">
+                        <Link to='/char' className='button'>Character</Link>
                     </div>
                 </div>
             )
@@ -83,7 +95,7 @@ const CharList = (props) => {
         )
     }
 
-   
+
 
     const items = renderItems(charList);
 
@@ -94,8 +106,8 @@ const CharList = (props) => {
 
     const disableBack = (counter === 0) ? "disabled" : "";
     const disableNext = (charList.length < 9) ? "disabled" : "";
-    const colorBack = (disableBack === "disabled") ? {'background' : 'red'} : {'background' : ''};
-    const colorNext = (disableNext === "disabled") ? {'background' : 'red'} : {'background' : ''};
+    const colorBack = (disableBack === "disabled") ? { 'background': 'red' } : { 'background': '' };
+    const colorNext = (disableNext === "disabled") ? { 'background': 'red' } : { 'background': '' };
 
     return (
         <div className="charList">

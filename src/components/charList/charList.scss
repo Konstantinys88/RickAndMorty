@@ -1,5 +1,5 @@
 .charList {
-    height: 1100px;
+    height: 1300px;
     width: 700px;
 
     margin-top: 50px;
@@ -20,8 +20,12 @@
     }
 
     &__item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
         width: 200px;
-        height: 300px;
+        height: 350px;
         background: #6a9c60;
         border: 4px solid black;
         transition: 0.3s transform;
@@ -53,6 +57,12 @@
         display: flex;
         justify-content: center;
         gap: 25px;
+    }
+
+    &__buttonImg {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
     }
 
     &__counter {

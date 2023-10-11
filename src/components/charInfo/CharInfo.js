@@ -14,11 +14,12 @@ const CharInfo = (props) => {
     const [error, setError] = useState(false);
 
     const { getCharacters } = GetFromBD();
+    const { charId } = props;
 
     useEffect(() => {
         onCharLoading();
         updateChar();
-    }, [props.charId]);
+    }, [charId]);
 
     const onCharLoaded = (char) => {
         setChar(char);
@@ -30,7 +31,6 @@ const CharInfo = (props) => {
     }
 
     const updateChar = () => {
-        const { charId } = props;
         if (!charId) {
             return;
         }
@@ -68,9 +68,9 @@ const CharInfo = (props) => {
                     </ul>
                     Total episodes with this character {episode?.length}.
                 </div>
-                <div className="charInfo__button">
+                {/* <div className="charInfo__button">
                     <a href='/' className='button'>Character page</a>
-                </div>
+                </div> */}
             </>
         )
     }
