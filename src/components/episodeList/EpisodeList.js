@@ -20,7 +20,7 @@ const EpisodeList = () => {
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        onCharLoading(false);
+        onLoading(false);
         onRequest(arr);
     }, [arr]);
 
@@ -35,7 +35,7 @@ const EpisodeList = () => {
         setLoading(false);
     }
 
-    const onCharLoading = () => {
+    const onLoading = () => {
         setLoading(true);
     }
 

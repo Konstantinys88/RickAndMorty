@@ -64,16 +64,18 @@ const CharList = (props) => {
     function renderItems(arr) {
         const item = arr.map((item, index) => {
 
+            // console.log(item.episode)
+
             let nameChar = ''
-            if(item.name.length > 19) {
-                nameChar = item.name.slice(0,27) + '...';
+            if (item.name.length > 19) {
+                nameChar = item.name.slice(0, 27) + '...';
             } else {
                 nameChar = item.name;
             }
 
             return (
                 <div key={item.id}
-                    onClick={() => props.onCharSelected(item.id)}
+                    onClick={() => props.onCharSelected(item.id, item.episode)}
                     className="charList__item">
                     <div>
                         <img className="charList__itemImg" src={item.image} alt={item.image} />

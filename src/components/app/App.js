@@ -18,10 +18,14 @@ import SingleCharPage from '../singleCharPage/SingfleCharPage';
 const App = () => {
 
 	const [selected, setSelected] = useState(1);
+	const [episode, setEpisode] = useState([]);
 
-	const onCharSelected = (id) => {
+
+	const onCharSelected = (id, arr) => {
 		setSelected(id);
+		setEpisode(arr);
 	}
+
 
 	return (
 		<Router>
@@ -37,7 +41,10 @@ const App = () => {
 								<RandomCharacter />
 								<div className="app__charList">
 									<CharList onCharSelected={onCharSelected} />
-									<CharInfo charId={selected} />
+									<CharInfo
+										charId={selected}
+										episodeId={episode}
+									/>
 								</div>
 							</Route>
 

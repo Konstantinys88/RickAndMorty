@@ -1,39 +1,100 @@
 import './singleCharPage.scss';
 
 import morty from '../../resources/morty.jpeg';
+import { useState, useEffect } from 'react';
+
+import GetFromBD from '../../services/GetFromBD';
+import Spinner from '../spinner/Spinner';
+import ErrorMesage from '../error/Error';
 
 
 const SingleCharPage = (props) => {
 
-    const { charId } = props;
+    const { getCharacters, getAllEpisode } = GetFromBD();
 
-    console.log(charId);
+    const { charId, episodeId } = props;
 
+    // console.log(charId);
+    // console.log(episodeId);
+
+
+    const [char, setChar] = useState({});
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+
+
+    useEffect(() => {
+        onCharLoading();
+        updateChar();
+    }, [charId]);
+
+
+    const onCharLoaded = (char) => {
+        setChar(char);
+        setLoading(false);
+    }
+
+    const onCharLoading = () => {
+        setLoading(true);
+    }
+
+    const updateChar = () => {
+        if (!charId) {
+            return;
+        }
+        getCharacters(charId)
+            .then(onCharLoaded)
+            .catch(onError);
+    }
+
+    const onError = () => {
+        setLoading(false);
+        setError(true);
+    }
+
+    const View = ({ char }) => {
+        const { name, origin, gender, species, status, image, episode } = char;
+
+        return (
+            <>
+                <div className="singleCharPage__characterDescription">
+                    <div className="singleCharPage__imgChar">
+                        <img src={image} alt={name} />
+                    </div>
+                    <div className="singleCharPage__descr">
+                        <p className='singleCharPage__descr-text'>Name: {name}</p>
+                        <p className='singleCharPage__descr-text'>Origin: {origin}</p>
+                        <p className='singleCharPage__descr-text'>Gender: {gender}</p>
+                        <p className='singleCharPage__descr-text'>Species: {species}</p>
+                        <p className='singleCharPage__descr-text'>Status: {status}</p>
+                    </div>
+                </div>
+                <div className="singleCharPage__episode">
+                    <ul className='singleCharPage__episodeList'>
+
+                        {
+                            episode?.map((item, index) => {
+                                return (
+                                    <li key={index}> Episode: {item}. </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+            </>
+        )
+    }
+
+    const spinner = loading ? <Spinner /> : null;
+    const errorMesage = error ? <ErrorMesage /> : null;
+    const content = !(loading || error || !char) ? <View char={char} /> : null;
 
     return (
         <div className="singleCharPage">
 
-            <div className="singleCharPage__characterDescription">
-                <div className="singleCharPage__imgChar">
-                    <img src={morty} alt="imgage" />
-                </div>
-                <div className="singleCharPage__descr">
-                    <p className='singleCharPage__descr-text'>Name: Name</p>
-                    <p className='singleCharPage__descr-text'>Origin: Orogin</p>
-                    <p className='singleCharPage__descr-text'>Gender: Gender</p>
-                    <p className='singleCharPage__descr-text'>Species: Species</p>
-                    <p className='singleCharPage__descr-text'>Status: Status</p>
-                </div>
-            </div>
-            <div className="singleCharPage__episode">
-                <ul className='singleCharPage__episodeList'>
-                    <li> / Episode 1 / </li>
-                    <li> / Episode 2 / </li>
-                    <li> / Episode 3 / </li>
-                </ul>
-            </div>
-
-
+            {errorMesage}
+            {spinner}
+            {content}
         </div>
     )
 
