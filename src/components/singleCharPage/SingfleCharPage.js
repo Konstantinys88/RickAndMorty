@@ -10,49 +10,25 @@ import ErrorMesage from '../error/Error';
 
 const SingleCharPage = (props) => {
 
-    const { getCharacters, getAllEpisode } = GetFromBD();
+    const { getCharacters } = GetFromBD();
     const { charId } = props;
 
     const [char, setChar] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    const [episodeId, setEpisodeId] = useState([]);
-    const [episode, setEpisode] = useState({});
 
-    // console.log([1, 2, 3, 4, 5])
-    console.log(episodeId);
-    // console.log(episode);
-    // getAllEpisode(episodeId).then(res => console.log(res));
 
     useEffect(() => {
         onLoading(true);
-        // onUpdateEpisode()
         updateChar();
 
     }, [charId]);
 
 
-
     const onCharLoaded = (char) => {
         setChar(char);
-        setEpisodeId(char.episode.map(Number));
         setLoading(false);
     }
-
-    // const onEpisodeLoaded = (episode) => {
-    //     setEpisode(episode);
-    //     setLoading(false);
-    // }
-
-    // const onUpdateEpisode = async () => {
-    //     if (!episodeId) {
-    //         return
-    //     }
-    //     getAllEpisode(episodeId)
-    //         .then(onEpisodeLoaded)
-    //         .catch(onError);
-    // }
-
 
     const updateChar = () => {
         if (!charId) {
@@ -90,18 +66,6 @@ const SingleCharPage = (props) => {
                         <p className='singleCharPage__descr-text'>Status: {status}</p>
                     </div>
                 </div>
-                <div className="singleCharPage__episode">
-                    <ul className='singleCharPage__episodeList'>
-
-                        {
-                            episode?.map((item, index) => {
-                                return (
-                                    <li key={index}> Episode: {item}. </li>
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
             </>
         )
     }
@@ -112,7 +76,6 @@ const SingleCharPage = (props) => {
 
     return (
         <div className="singleCharPage">
-
             {errorMesage}
             {spinner}
             {content}

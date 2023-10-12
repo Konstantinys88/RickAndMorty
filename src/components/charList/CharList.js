@@ -71,7 +71,7 @@ const CharList = (props) => {
 
             return (
                 <div key={item.id}
-                    onClick={() => props.onCharSelected(item.id)}
+                    onClick={() => props.onCharSelected(item.id, item.episode.map(Number))}
                     className="charList__item">
                     <div>
                         <img className="charList__itemImg" src={item.image} alt={item.image} />

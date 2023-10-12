@@ -1,0 +1,16 @@
+.singleEpisodeList {
+    width: 100%;
+    height: 100vh;
+
+    &__list {
+        border: 4px solid black;
+        box-shadow: 0px 0px 10px 6px #c8f227;
+        padding: 15px;
+
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        color: black;
+    }
+}

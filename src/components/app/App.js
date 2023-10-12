@@ -9,20 +9,23 @@ import RandomCharacter from '../randomCharacter/RandomCharacter';
 import CharList from '../charList/CharList';
 import CharInfo from '../charInfo/CharInfo';
 
-import { useState } from 'react';
+import SingleCharPage from '../singleCharPage/SingfleCharPage';
+import SingleEpisodeList from '../singleEpisodeList/SingleEpisodeList';
 
+import { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import SingleCharPage from '../singleCharPage/SingfleCharPage';
+
 
 const App = () => {
 
 	const [selected, setSelected] = useState(1);
+	const [episodeId, setEpisodeId] = useState([])
 
 	const onCharSelected = (id, arr) => {
 		setSelected(id);
+		setEpisodeId(arr)
 	}
-
 
 
 	return (
@@ -56,6 +59,7 @@ const App = () => {
 
 							<Route exact path='/char'>
 								<SingleCharPage charId={selected} />
+								<SingleEpisodeList episodeId={episodeId}/>
 							</Route>
 
 						</Switch>

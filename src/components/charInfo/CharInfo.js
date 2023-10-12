@@ -68,9 +68,6 @@ const CharInfo = (props) => {
                     </ul>
                     Total episodes with this character {episode?.length}.
                 </div>
-                {/* <div className="charInfo__button">
-                    <a href='/' className='button'>Character page</a>
-                </div> */}
             </>
         )
     }
