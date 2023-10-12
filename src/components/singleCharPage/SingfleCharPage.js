@@ -19,27 +19,15 @@ const SingleCharPage = (props) => {
     const [episodeId, setEpisodeId] = useState([]);
     const [episode, setEpisode] = useState({});
     
-    console.log(episodeId);
+    // console.log(episodeId);
     // console.log(episode);
-
     // getAllEpisode(episodeId).then(res => console.log(res));
 
     useEffect(() => {
         onLoading(true);
         updateChar();
-        // onRequest(episodeId);
     }, [charId]);
 
-    // const onRequest = (arr) => {
-    //     getAllEpisode(arr)
-    //         .then(onEpisodeListLoaded)
-    //         .catch(onError);
-    // }
-
-    // const onEpisodeListLoaded = (newEpisode) => {
-    //     setEpisode(episode => [...newEpisode]);
-    //     setLoading(false);
-    // }
 
 
     const onCharLoaded = (char) => {

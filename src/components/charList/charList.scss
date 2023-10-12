@@ -1,12 +1,13 @@
 .charList {
-    height: 1300px;
-    width: 700px;
+    min-height: 1300px;
+    width:100%;
 
     margin-top: 50px;
     margin-bottom: 50px;
 
     display: flex;
     flex-direction: column;
+
 
     &__conteiner {
         max-width: 700px;
@@ -17,6 +18,9 @@
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 35px;
+        @media (max-width: 460px) {
+            justify-content: center;
+        }
     }
 
     &__item {
@@ -70,5 +74,8 @@
         display: flex;
         align-self: center;
         padding: 0 15px;
+        @media (max-width: 460px) {
+            display: none;
+        }
     }
 }

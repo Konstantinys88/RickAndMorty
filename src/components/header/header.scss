@@ -1,6 +1,11 @@
 .header {
     display: flex;
     justify-content: space-around;
+    @media (max-width: 820px) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
     &__text {
         font-size: 30px;
         font-weight: 900;
@@ -14,5 +19,15 @@
         font-size: 30px;
         font-weight: 900;
         text-transform: uppercase;
+        @media (max-width: 460px) {
+            display: none;
+        }
+    }
+    &__pages {
+        @media (max-width: 460px) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 }

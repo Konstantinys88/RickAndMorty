@@ -20,7 +20,7 @@ const EpisodeList = () => {
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        onLoading(false);
+        // onLoading(false);
         onRequest(arr);
     }, [arr]);
 
