@@ -40,9 +40,9 @@ const LocationList = () => {
     }
 
     //страница скачет из-за спинера
-    const onLocationLoading = () => {
-        setLoading(true);
-    }
+    // const onLocationLoading = () => {
+    //     setLoading(true);
+    // }
 
     const onError = () => {
         setLoading(false);

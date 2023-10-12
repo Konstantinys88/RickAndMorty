@@ -18,14 +18,17 @@ const SingleCharPage = (props) => {
     const [error, setError] = useState(false);
     const [episodeId, setEpisodeId] = useState([]);
     const [episode, setEpisode] = useState({});
-    
-    // console.log(episodeId);
+
+    // console.log([1, 2, 3, 4, 5])
+    console.log(episodeId);
     // console.log(episode);
     // getAllEpisode(episodeId).then(res => console.log(res));
 
     useEffect(() => {
         onLoading(true);
+        // onUpdateEpisode()
         updateChar();
+
     }, [charId]);
 
 
@@ -36,9 +39,20 @@ const SingleCharPage = (props) => {
         setLoading(false);
     }
 
-    const onLoading = () => {
-        setLoading(true);
-    }
+    // const onEpisodeLoaded = (episode) => {
+    //     setEpisode(episode);
+    //     setLoading(false);
+    // }
+
+    // const onUpdateEpisode = async () => {
+    //     if (!episodeId) {
+    //         return
+    //     }
+    //     getAllEpisode(episodeId)
+    //         .then(onEpisodeLoaded)
+    //         .catch(onError);
+    // }
+
 
     const updateChar = () => {
         if (!charId) {
@@ -54,8 +68,13 @@ const SingleCharPage = (props) => {
         setError(true);
     }
 
+    const onLoading = () => {
+        setLoading(true);
+    }
+
     const View = ({ char }) => {
         const { name, origin, gender, species, status, image, episode } = char;
+
 
         return (
             <>

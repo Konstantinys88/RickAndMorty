@@ -35,9 +35,9 @@ const EpisodeList = () => {
         setLoading(false);
     }
 
-    const onLoading = () => {
-        setLoading(true);
-    }
+    // const onLoading = () => {
+    //     setLoading(true);
+    // }
 
     const onError = () => {
         setLoading(false);
