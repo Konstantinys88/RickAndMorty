@@ -1,6 +1,6 @@
 import './singleCharPage.scss';
 
-import morty from '../../resources/morty.jpeg';
+// import morty from '../../resources/morty.jpeg';
 import { useState, useEffect } from 'react';
 
 import GetFromBD from '../../services/GetFromBD';
@@ -11,30 +11,44 @@ import ErrorMesage from '../error/Error';
 const SingleCharPage = (props) => {
 
     const { getCharacters, getAllEpisode } = GetFromBD();
-
-    const { charId, episodeId } = props;
-
-    // console.log(charId);
-    // console.log(episodeId);
-
+    const { charId } = props;
 
     const [char, setChar] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [episodeId, setEpisodeId] = useState([]);
+    const [episode, setEpisode] = useState({});
+    
+    console.log(episodeId);
+    // console.log(episode);
 
+    // getAllEpisode(episodeId).then(res => console.log(res));
 
     useEffect(() => {
-        onCharLoading();
+        onLoading(true);
         updateChar();
+        // onRequest(episodeId);
     }, [charId]);
+
+    // const onRequest = (arr) => {
+    //     getAllEpisode(arr)
+    //         .then(onEpisodeListLoaded)
+    //         .catch(onError);
+    // }
+
+    // const onEpisodeListLoaded = (newEpisode) => {
+    //     setEpisode(episode => [...newEpisode]);
+    //     setLoading(false);
+    // }
 
 
     const onCharLoaded = (char) => {
         setChar(char);
+        setEpisodeId(char.episode.map(Number));
         setLoading(false);
     }
 
-    const onCharLoading = () => {
+    const onLoading = () => {
         setLoading(true);
     }
 

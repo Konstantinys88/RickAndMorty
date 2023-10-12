@@ -26,6 +26,8 @@ const App = () => {
 		setEpisode(arr);
 	}
 
+	// console.log(episode)
+
 
 	return (
 		<Router>
@@ -61,7 +63,6 @@ const App = () => {
 							</Route>
 
 						</Switch>
-
 					</div>
 
 				</div>
