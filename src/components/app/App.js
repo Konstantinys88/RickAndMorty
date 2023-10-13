@@ -44,7 +44,7 @@ const App = () => {
 									<CharList onCharSelected={onCharSelected} />
 									<CharInfo
 										charId={selected}
-										// episodeId={episode}
+									// episodeId={episode}
 									/>
 								</div>
 							</Route>
@@ -58,8 +58,10 @@ const App = () => {
 							</Route>
 
 							<Route exact path='/char'>
-								<SingleCharPage charId={selected} />
-								<SingleEpisodeList episodeId={episodeId}/>
+								<div className="app__singleCgarpage">
+									<SingleCharPage charId={selected} />
+									<SingleEpisodeList episodeId={episodeId} />
+								</div>
 							</Route>
 
 						</Switch>
