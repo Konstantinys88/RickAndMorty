@@ -19,12 +19,9 @@ const LocationList = () => {
     const [counter, setCounter] = useState(0);
     const [error, setError] = useState(false);
 
-    // locationList.forEach(item => console.log(item.name))
-    // console.log(locationList)
 
 
     useEffect(() => {
-        // onLocationLoading(false);
         onRequestLocation(arr);
     }, [arr]);
 
@@ -38,11 +35,6 @@ const LocationList = () => {
         setLocationList(locationList => [...newLocationList]);
         setLoading(false);
     }
-
-    //страница скачет из-за спинера
-    // const onLocationLoading = () => {
-    //     setLoading(true);
-    // }
 
     const onError = () => {
         setLoading(false);
