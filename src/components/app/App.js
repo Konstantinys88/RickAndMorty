@@ -15,9 +15,13 @@ import SingleEpisodeList from '../singleEpisodeList/SingleEpisodeList';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+// import GetFromBD from '../../services/GetFromBD';
 
 
 const App = () => {
+
+	// const {getSearcCharacters} = GetFromBD();
+	// getSearcCharacters('Ab').then(res => console.log(res));
 
 	const [selected, setSelected] = useState(1);
 	const [episodeId, setEpisodeId] = useState([])
@@ -42,10 +46,7 @@ const App = () => {
 								<RandomCharacter />
 								<div className="app__charList">
 									<CharList onCharSelected={onCharSelected} />
-									<CharInfo
-										charId={selected}
-									// episodeId={episode}
-									/>
+									<CharInfo charId={selected} />
 								</div>
 							</Route>
 

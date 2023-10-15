@@ -77,7 +77,7 @@ const LocationList = () => {
 
                 </li>
             )
-        });
+        })
 
         return (
             <ul className="location__list">
@@ -101,8 +101,8 @@ const LocationList = () => {
     return (
         <div className='location'>
             {spinner}
-            {errorMesage};
-            {content};
+            {errorMesage}
+            {content}
             <div className='location__button'>
                 <button
                     onClick={onBack}

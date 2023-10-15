@@ -1,7 +1,6 @@
 .episodeList {
     width: 100%;
-    // height: 1290px;
-    height: 100%;
+    min-height: 1650px;
 
     border: 4px solid black;
     box-shadow: 0px 0px 10px 6px #c8f227;
@@ -12,6 +11,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (max-width: 1100px) {
+        min-height: 100%;
+    }
 
     &__list {
         padding: 15px 35px;
