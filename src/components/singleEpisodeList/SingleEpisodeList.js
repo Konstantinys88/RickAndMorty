@@ -13,8 +13,6 @@ const SingleEpisodeList = (props) => {
 
     const [episode, setEpisode] = useState([]);
 
-    console.log(episode)
-
     useEffect(() => {
         updateEpisode();
     }, []);
@@ -34,7 +32,7 @@ const SingleEpisodeList = (props) => {
     function renderItems(arr) {
         const item = arr.map((item, index) => {
             return (
-                <li className='singleEpisodeList__item'>  Episode {item.id} :  {item.name}. Release date - {item.airDate}. </li>
+                <li key={item.id} className='singleEpisodeList__item'>  Episode {item.id} :  {item.name}. Release date - {item.airDate}. </li>
             )
         });
         return (
