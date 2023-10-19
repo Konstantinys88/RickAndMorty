@@ -79,14 +79,11 @@ const CharList = (props) => {
         )
     }
 
-
-
     const items = renderItems(charList);
 
     const spinner = loading ? <Spinner /> : null;
     const errorMesage = error ? <ErrorMesage /> : null;
     const content = !(loading || error || !charList) ? items : null;
-
 
     const disableBack = (counter === 0) ? "disabled" : "";
     const disableNext = (charList.length < 9) ? "disabled" : "";
@@ -112,7 +109,6 @@ const CharList = (props) => {
                     className='button'>вперед</button>
             </div>
         </div >
-
     )
 }
 

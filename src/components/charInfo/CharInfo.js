@@ -59,7 +59,7 @@ const CharInfo = (props) => {
                     <ul>
                         {
                             episode?.map((item, index) => {
-                                if (index > 5) return;
+                                if (index > 8) return;
                                 return (
                                     <li key={index}>Episode: {item}</li>
                                 )
