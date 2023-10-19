@@ -10,14 +10,12 @@ import { useState, useEffect } from 'react';
 
 const EpisodeList = () => {
 
-    const { getAllEpisode } = GetFromBD();
+    const { getAllEpisode, loading, error } = GetFromBD();
     const arrayEpisode = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const [arr, setArr] = useState(arrayEpisode);
 
     const [episodeList, setEpisodeList] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [counter, setCounter] = useState(0)
-    const [error, setError] = useState(false);
 
     useEffect(() => {
         onRequest(arr);
@@ -25,31 +23,23 @@ const EpisodeList = () => {
 
     const onRequest = (arr) => {
         getAllEpisode(arr)
-            .then(onEpisodeListLoaded)
-            .catch(onError);
+            .then(onEpisodeListLoaded);
     }
 
     const onEpisodeListLoaded = (newEpisodeList) => {
         setEpisodeList(episodeList => [...newEpisodeList]);
-        setLoading(false);
-    }
-
-
-    const onError = () => {
-        setLoading(false);
-        setError(true);
     }
 
     const onNext = () => {
         const next = arr.map(item => item + 9);
         setArr(next);
-        setCounter(contenr => contenr + 1)
+        setCounter(contenr => contenr + 1);
     }
 
     const onBack = () => {
         const next = arr.map(item => item - 9);
         setArr(next);
-        setCounter(contenr => contenr - 1)
+        setCounter(contenr => contenr - 1);
     }
 
     const renderEpisodeList = (arr) => {

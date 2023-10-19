@@ -23,8 +23,8 @@ const App = () => {
 	// const {getSearcCharacters} = GetFromBD();
 	// getSearcCharacters('Ab').then(res => console.log(res));
 
-	const [selected, setSelected] = useState(1);
-	const [episodeId, setEpisodeId] = useState([])
+	const [selected, setSelected] = useState(33);
+	const [episodeId, setEpisodeId] = useState([29])
 
 	const onCharSelected = (id, arr) => {
 		setSelected(id);

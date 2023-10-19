@@ -8,18 +8,14 @@ import ErrorMesage from '../error/Error';
 
 const SingleEpisodeList = (props) => {
 
-    const { episodeId } = props;
+    const { episodeId, loading, error } = props;
     const { getAllEpisode } = GetFromBD();
 
-
     const [episode, setEpisode] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
 
     console.log(episode)
 
     useEffect(() => {
-        onLoading(true);
         updateEpisode();
     }, []);
 
@@ -28,24 +24,12 @@ const SingleEpisodeList = (props) => {
             return;
         }
         getAllEpisode(episodeId)
-            .then(onEpisodeLoaded)
-            .catch(onError);
+            .then(onEpisodeLoaded);
     }
 
     const onEpisodeLoaded = (episode) => {
         setEpisode(episode);
-        setLoading(false);
     }
-
-    const onError = () => {
-        setLoading(false);
-        setError(true);
-    }
-
-    const onLoading = () => {
-        setLoading(true);
-    }
-
 
     function renderItems(arr) {
         const item = arr.map((item, index) => {
@@ -66,7 +50,6 @@ const SingleEpisodeList = (props) => {
     const errorMesage = error ? <ErrorMesage /> : null;
     const content = !(loading || error || !episode) ? items : null;
 
-
     return (
         <>
             <div className="singleEpisodeList">
@@ -76,7 +59,6 @@ const SingleEpisodeList = (props) => {
             </div>
         </>
     )
-
 }
 
 export default SingleEpisodeList;
