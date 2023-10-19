@@ -12,35 +12,20 @@ import ErrorMesage from '../error/Error';
 const RandomCharacter = () => {
 
     const [char, setChar] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-
-    const { getCharacters } = GetFromBD();
+    const { getCharacters, loading, error } = GetFromBD();
 
     useEffect(() => {
-        onCharLoading(false);
         updateChar();
     }, []);
 
     const onCharLoaded = (char) => {
         setChar(char);
-        setLoading(false);
-    }
-
-    const onCharLoading = () => {
-        setLoading(true);
     }
 
     const updateChar = () => {
         const id = Math.floor(Math.random() * (826 - 1)) + 1;
         getCharacters(id)
-            .then(onCharLoaded)
-            .catch(onError);
-    }
-
-    const onError = () => {
-        setLoading(false);
-        setError(true);
+            .then(onCharLoaded);
     }
 
     const View = ({ char }) => {

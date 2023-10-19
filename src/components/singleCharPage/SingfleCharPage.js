@@ -10,16 +10,12 @@ import ErrorMesage from '../error/Error';
 
 const SingleCharPage = (props) => {
 
-    const { getCharacters } = GetFromBD();
+    const { getCharacters, loading, error } = GetFromBD();
     const { charId } = props;
 
     const [char, setChar] = useState({});
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
-
 
     useEffect(() => {
-        onLoading(true);
         updateChar();
 
     }, [charId]);
@@ -27,7 +23,6 @@ const SingleCharPage = (props) => {
 
     const onCharLoaded = (char) => {
         setChar(char);
-        setLoading(false);
     }
 
     const updateChar = () => {
@@ -35,17 +30,7 @@ const SingleCharPage = (props) => {
             return;
         }
         getCharacters(charId)
-            .then(onCharLoaded)
-            .catch(onError);
-    }
-
-    const onError = () => {
-        setLoading(false);
-        setError(true);
-    }
-
-    const onLoading = () => {
-        setLoading(true);
+            .then(onCharLoaded);
     }
 
     const View = ({ char }) => {

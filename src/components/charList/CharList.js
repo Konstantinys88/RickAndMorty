@@ -8,49 +8,35 @@ import GetFromBD from '../../services/GetFromBD';
 import Spinner from '../spinner/Spinner';
 import ErrorMesage from '../error/Error';
 
-import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 const CharList = (props) => {
 
-    const { getAllCharcters } = GetFromBD();
+    const { getAllCharcters, loading, error } = GetFromBD();
     const arrayCharacters = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const [arr, setArr] = useState(arrayCharacters);
 
     const [charList, setCharList] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [counter, setCounter] = useState(0)
-    const [error, setError] = useState(false);
 
 
     useEffect(() => {
-        onCharLoading(false);
         onRequest(arr);
     }, [arr]);
 
     const onRequest = (arr) => {
         getAllCharcters(arr)
-            .then(onCharListLoaded)
-            .catch(onError);
+            .then(onCharListLoaded);
     }
 
     const onCharListLoaded = (newCharList) => {
         setCharList(charList => [...newCharList]);
-        setLoading(false);
-    }
-
-    const onCharLoading = () => {
-        setLoading(true);
-    }
-
-    const onError = () => {
-        setLoading(false);
-        setError(true);
     }
 
     const onNext = () => {
         const next = arr.map(item => item + 9);
         setArr(next);
-        setCounter(contenr => contenr + 1)
+        setCounter(contenr => contenr + 1);
     }
 
     const onBack = () => {

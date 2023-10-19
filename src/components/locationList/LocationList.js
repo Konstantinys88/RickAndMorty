@@ -6,20 +6,14 @@ import ErrorMesage from '../error/Error';
 
 import { useState, useEffect } from 'react';
 
-
-
 const LocationList = () => {
 
-    const { getAllLocation } = GetFromBD();
+    const { getAllLocation, loading, error } = GetFromBD();
     const arrayCharacters = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const [arr, setArr] = useState(arrayCharacters);
 
     const [locationList, setLocationList] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [counter, setCounter] = useState(0);
-    const [error, setError] = useState(false);
-
-
 
     useEffect(() => {
         onRequestLocation(arr);
@@ -27,18 +21,11 @@ const LocationList = () => {
 
     const onRequestLocation = (arr) => {
         getAllLocation(arr)
-            .then(onCharListLoaded)
-            .catch(onError);
+            .then(onCharListLoaded);
     }
 
     const onCharListLoaded = (newLocationList) => {
         setLocationList(locationList => [...newLocationList]);
-        setLoading(false);
-    }
-
-    const onError = () => {
-        setLoading(false);
-        setError(true);
     }
 
     const onNext = () => {

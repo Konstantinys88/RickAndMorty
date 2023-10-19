@@ -1,25 +1,30 @@
-
+import { useHttp } from '../hooks/http.hook'
 
 const GetFromBD = () => {
+
+    const { loading, request, error } = useHttp();
 
     const _apiKey = `https://rickandmortyapi.com/api/character/`;
 
     /**
      * Функция отправляет запрос на сервер, возвращает обьект в форматек json.
      */
-    const getResource = async (url) => {
-        let res = await fetch(url);
-        if (!res.ok) {
-            throw new Error(`Что-то пошло не так, статус код запроса - ${res.status}`)
-        }
-        return await res.json();
-    }
+    // const getResource = async (url) => {
+    //     let res = await fetch(url);
+    //     if (!res.ok) {
+    //         throw new Error(`Что-то пошло не так, статус код запроса - ${res.status}`)
+    //     }
+    //     return await res.json();
+    // }
+
+    //Теперь вместо getResourse используется request из http.hook
 
     /**
      * Функция возвращает одного персонажа
      */
     const getCharacters = async (number) => {
-        const res = await getResource(`${_apiKey}${number}`);
+        // const res = await getResource(`${_apiKey}${number}`);
+        const res = await request(`${_apiKey}${number}`);
         return transformCharacters(res);
     }
 
@@ -29,7 +34,8 @@ const GetFromBD = () => {
      */
     const getAllCharcters = async (arr) => {
         const arrRes = arr.join(',');
-        const res = await getResource(`${_apiKey}[${arrRes}]`);
+        // const res = await getResource(`${_apiKey}[${arrRes}]`);
+        const res = await request(`${_apiKey}[${arrRes}]`);
         return res.map(transformCharacters);
     }
 
@@ -39,7 +45,8 @@ const GetFromBD = () => {
      */
     const getAllLocation = async (arr) => {
         const arrRes = arr.join(',');
-        const res = await getResource(`https://rickandmortyapi.com/api/location/[${arrRes}]`);
+        // const res = await getResource(`https://rickandmortyapi.com/api/location/[${arrRes}]`);
+        const res = await request(`https://rickandmortyapi.com/api/location/[${arrRes}]`);
         return res.map(transformLocation);
     }
 
@@ -49,7 +56,8 @@ const GetFromBD = () => {
      */
     const getAllEpisode = async (arr) => {
         const arrRes = arr.join(',');
-        const res = await getResource(`https://rickandmortyapi.com/api/episode/[${arrRes}]`);
+        // const res = await getResource(`https://rickandmortyapi.com/api/episode/[${arrRes}]`);
+        const res = await request(`https://rickandmortyapi.com/api/episode/[${arrRes}]`);
         return res.map(transformEpisode);
     }
 
@@ -58,7 +66,8 @@ const GetFromBD = () => {
      * Принимает строку с именем персонажа и возвращает массив обьектов результатов поиска
      */
     const getSearcCharacters = async (name) => {
-        const res = await getResource(`${_apiKey}?name=${name}`);
+        // const res = await getResource(`${_apiKey}?name=${name}`);
+        const res = await request(`${_apiKey}?name=${name}`);
         return res.results.map(transformCharacters);
     }
 
@@ -102,6 +111,8 @@ const GetFromBD = () => {
 
 
     return {
+        loading,
+        error,
         getAllCharcters,
         getCharacters,
         getSearcCharacters,
