@@ -12,6 +12,7 @@ import CharInfo from '../charInfo/CharInfo';
 import SingleCharPage from '../singleCharPage/SingfleCharPage';
 import SingleEpisodeList from '../singleEpisodeList/SingleEpisodeList';
 
+import SearchCharacters from '../searchCharacters/SearchCharacters';
 import FoundСharacter from '../foundСharacters/FoundСharacters';
 
 import { useState } from 'react';
@@ -43,19 +44,18 @@ const App = () => {
 	// getSearcCharacters(inputCharName).then(res => console.log(res));
 
 
-
-
 	return (
 		<Router>
 			<div className="app">
 				<div className="app__container">
 
-					<Header onCharNameSelected={onCharNameSelected}/>
+					<Header onCharNameSelected={onCharNameSelected} />
 					<div className='app__main'>
 
 						<Switch>
 
 							<Route exact path='/'>
+								<SearchCharacters onCharNameSelected={onCharNameSelected} />
 								<RandomCharacter />
 								<div className="app__charList">
 									<CharList onCharSelected={onCharSelected} />
@@ -79,7 +79,7 @@ const App = () => {
 							</Route>
 
 							<Route exact path='/foundСharacter'>
-								<FoundСharacter charName={inputCharName}/>
+								<FoundСharacter charName={inputCharName} />
 							</Route>
 
 						</Switch>

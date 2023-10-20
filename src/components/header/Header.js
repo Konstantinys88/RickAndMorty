@@ -20,17 +20,6 @@ const Header = (props) => {
                     <NavLink exact activeStyle={{ 'color': '#c8f227' }} to="/episode" className="header__text">Episode</NavLink>
                 </div>
             </div>
-            <div className="header__search">
-                <form className='header__form' onSubmit={e => { e.preventDefault(); }}>
-                    <input className='header__searchInput'
-                     type="text" 
-                     placeholder="Search character" 
-                     onChange={(e) => { props.onCharNameSelected(e.target.value); }}/>
-                    <Link to="/foundСharacter" className='header__searchBtn button'>Search</Link> 
-                </form>
-            </div>
-
-
         </div>
     )
 }

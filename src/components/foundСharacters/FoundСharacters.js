@@ -1,4 +1,4 @@
-
+import './foundCharacter.scss';
 
 import GetFromBD from "../../services/GetFromBD";
 import { useEffect, useState } from "react";
@@ -25,7 +25,7 @@ const FoundСharacter = (props) => {
             return;
         }
         getSearcCharacters(charName)
-            .then(onCharLoaded)
+            .then(onCharLoaded);
     }
 
     const onCharLoaded = (char) => {
