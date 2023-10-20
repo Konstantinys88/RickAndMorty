@@ -1,17 +1,10 @@
 
 import './header.scss';
 
-import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom';
 
 
-
-
 const Header = (props) => {
-
-
-    // const [inputValue, setInputValue] = useState();
-    // console.log(inputValue);
 
     return (
         <div className="header">
@@ -28,12 +21,12 @@ const Header = (props) => {
                 </div>
             </div>
             <div className="header__search">
-                <form className='header__form'>
+                <form className='header__form' onSubmit={e => { e.preventDefault(); }}>
                     <input className='header__searchInput'
                      type="text" 
                      placeholder="Search character" 
                      onChange={(e) => { props.onCharNameSelected(e.target.value); }}/>
-                    <button className='header__searchBtn button' type="submit">Search</button>
+                    <Link to="/foundСharacter" className='header__searchBtn button'>Search</Link> 
                 </form>
             </div>
 

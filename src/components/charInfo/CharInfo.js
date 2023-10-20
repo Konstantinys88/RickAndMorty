@@ -10,38 +10,26 @@ import ErrorMesage from '../error/Error';
 const CharInfo = (props) => {
 
     const [char, setChar] = useState({});
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
 
-    const { getCharacters } = GetFromBD();
+
+    const { getCharacters, loading, error } = GetFromBD();
     const { charId } = props;
 
     useEffect(() => {
-        onCharLoading();
         updateChar();
     }, [charId]);
 
     const onCharLoaded = (char) => {
         setChar(char);
-        setLoading(false);
     }
 
-    const onCharLoading = () => {
-        setLoading(true);
-    }
 
     const updateChar = () => {
         if (!charId) {
             return;
         }
         getCharacters(charId)
-            .then(onCharLoaded)
-            .catch(onError);
-    }
-
-    const onError = () => {
-        setLoading(false);
-        setError(true);
+            .then(onCharLoaded);
     }
 
 

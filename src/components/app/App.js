@@ -12,6 +12,8 @@ import CharInfo from '../charInfo/CharInfo';
 import SingleCharPage from '../singleCharPage/SingfleCharPage';
 import SingleEpisodeList from '../singleEpisodeList/SingleEpisodeList';
 
+import FoundСharacter from '../foundСharacters/FoundСharacters';
+
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -22,11 +24,11 @@ const App = () => {
 
 	// const {getSearcCharacters, getCharactersAll} = GetFromBD();
 	// getCharactersAll().then(res => console.log(res));
-	// getSearcCharacters('Ab').then(res => console.log(res));
+
 
 	const [selected, setSelected] = useState(33);
 	const [episodeId, setEpisodeId] = useState([29])
-	const [inputCharName, setInputCharName] = useState(); //значение из инпута
+	const [inputCharName, setInputCharName] = useState('Maximums Rickimus'); //значение из инпута
 
 	const onCharSelected = (id, arr) => {
 		setSelected(id);
@@ -38,6 +40,7 @@ const App = () => {
 	}
 
 	// console.log(inputCharName);
+	// getSearcCharacters(inputCharName).then(res => console.log(res));
 
 
 
@@ -73,6 +76,10 @@ const App = () => {
 									<SingleCharPage charId={selected} />
 									<SingleEpisodeList episodeId={episodeId} />
 								</div>
+							</Route>
+
+							<Route exact path='/foundСharacter'>
+								<FoundСharacter charName={inputCharName}/>
 							</Route>
 
 						</Switch>
