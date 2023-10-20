@@ -20,16 +20,26 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const App = () => {
 
-	// const {getSearcCharacters} = GetFromBD();
+	// const {getSearcCharacters, getCharactersAll} = GetFromBD();
+	// getCharactersAll().then(res => console.log(res));
 	// getSearcCharacters('Ab').then(res => console.log(res));
 
 	const [selected, setSelected] = useState(33);
 	const [episodeId, setEpisodeId] = useState([29])
+	const [inputCharName, setInputCharName] = useState(); //значение из инпута
 
 	const onCharSelected = (id, arr) => {
 		setSelected(id);
-		setEpisodeId(arr)
+		setEpisodeId(arr);
 	}
+
+	const onCharNameSelected = (str) => {
+		setInputCharName(str);
+	}
+
+	// console.log(inputCharName);
+
+
 
 
 	return (
@@ -37,7 +47,7 @@ const App = () => {
 			<div className="app">
 				<div className="app__container">
 
-					<Header />
+					<Header onCharNameSelected={onCharNameSelected}/>
 					<div className='app__main'>
 
 						<Switch>

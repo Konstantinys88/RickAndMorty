@@ -17,6 +17,12 @@ const GetFromBD = () => {
     //     return await res.json();
     // }
 
+    // const getCharactersAll = async () => {
+    //     const res = await getResource(`https://rickandmortyapi.com/api/character`);
+    //     return res;
+    // }
+
+
     //Теперь вместо getResourse используется request из http.hook
 
     /**
@@ -118,6 +124,8 @@ const GetFromBD = () => {
         getSearcCharacters,
         getAllLocation,
         getAllEpisode,
+
+        // getCharactersAll
     }
 }
 
