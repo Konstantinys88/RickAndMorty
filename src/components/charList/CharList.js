@@ -71,7 +71,7 @@ const CharList = (props) => {
                     </div>
                 </div>
             )
-        });
+        })
         return (
             <div className="charList__conteiner">
                 {item}

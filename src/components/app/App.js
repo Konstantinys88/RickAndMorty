@@ -79,7 +79,9 @@ const App = () => {
 							</Route>
 
 							<Route exact path='/foundСharacter'>
-								<FoundСharacter charName={inputCharName} />
+								<FoundСharacter 
+								charName={inputCharName}
+								onCharSelected={onCharSelected} />
 							</Route>
 
 						</Switch>
