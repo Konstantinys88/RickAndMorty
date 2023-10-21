@@ -53,7 +53,6 @@ const LocationList = () => {
                     <div className="location__linKWrapper">
                         <a href='#' className='button location__link'>Page location</a>
                     </div>
-
                 </li>
             )
         })
