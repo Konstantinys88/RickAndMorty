@@ -27,6 +27,7 @@ const SearchCharacters = (props) => {
                     onChange={(e) => {
                         if (cyrillicPattern.test(e.target.value)) {
                             setBord(true)
+                            props.onCharNameSelected(e.target.value);
                         } else {
                             setBord(false)
                             props.onCharNameSelected(e.target.value);
