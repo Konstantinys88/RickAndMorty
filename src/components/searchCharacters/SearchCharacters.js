@@ -10,7 +10,7 @@ const SearchCharacters = (props) => {
     const [bord, setBord] = useState(false);
 
     const cyrillicPattern = /^[\u0400-\u04FF]+$/;
-    const whitespacePAttern = /\s/g;
+    // const whitespacePAttern = /\s/g;
 
     let border = { 'border': '4px solid black' }
     if (bord) {
@@ -25,7 +25,7 @@ const SearchCharacters = (props) => {
                     placeholder="Search character"
                     style={border}
                     onChange={(e) => {
-                        if (whitespacePAttern.test(e.target.value) || cyrillicPattern.test(e.target.value)) {
+                        if (cyrillicPattern.test(e.target.value)) {
                             setBord(true)
                         } else {
                             setBord(false)
