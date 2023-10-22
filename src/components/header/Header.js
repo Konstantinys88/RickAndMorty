@@ -1,7 +1,7 @@
 
 import './header.scss';
 
-import { Link, NavLink } from 'react-router-dom/cjs/react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 const Header = (props) => {

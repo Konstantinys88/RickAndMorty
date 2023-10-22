@@ -1,9 +1,7 @@
 
 import './searchCharacters.scss';
 
-import { Link } from 'react-router-dom/cjs/react-router-dom';
-// import { useNavigate } from 'react-router';
-// нужна 6 версия
+import { useNavigate } from 'react-router';
 import { useState } from 'react';
 
 
@@ -18,6 +16,9 @@ const SearchCharacters = (props) => {
     if (bord) {
         border = { 'border': '4px solid red' }
     }
+
+
+    const navigate = useNavigate();
 
     return (
         <div className="search">
@@ -36,7 +37,7 @@ const SearchCharacters = (props) => {
                         }
                     }}
                 />
-                <Link to="/foundСharacter" className='search__searchBtn button'>Search</Link>
+                <button onClick={async event => { navigate(`/foundСharacter`); }} className='search__searchBtn button'>Search</button>
             </form>
         </div>
     )
