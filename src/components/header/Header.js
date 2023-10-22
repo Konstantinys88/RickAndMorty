@@ -13,11 +13,11 @@ const Header = (props) => {
                     <Link to='/' className="header__text">Rick and Morty Portal</Link>
                 </div>
                 <div className="header__pages">
-                    <NavLink exact activeStyle={{ 'color': '#c8f227' }} to="/" className="header__text">Character</NavLink>
+                    <NavLink end style={({ isActive }) => ({ color: isActive ? '#c8f227' : 'inherit' })} to="/" className="header__text">Character</NavLink>
                     <span className="header__span"> / </span>
-                    <NavLink exact activeStyle={{ 'color': '#c8f227' }} to="/location" className="header__text">Location</NavLink>
+                    <NavLink style={({ isActive }) => ({ color: isActive ? '#c8f227' : 'inherit' })} to="/location" className="header__text">Location</NavLink>
                     <span className="header__span"> / </span>
-                    <NavLink exact activeStyle={{ 'color': '#c8f227' }} to="/episode" className="header__text">Episode</NavLink>
+                    <NavLink style={({ isActive }) => ({ color: isActive ? '#c8f227' : 'inherit' })} to="/episode" className="header__text">Episode</NavLink>
                 </div>
             </div>
         </div>
