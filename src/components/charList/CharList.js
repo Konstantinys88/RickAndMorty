@@ -1,5 +1,4 @@
 
-// import arrow from '../../resources/arrow.png';
 
 import './charList.scss';
 
@@ -8,7 +7,7 @@ import GetFromBD from '../../services/GetFromBD';
 import Spinner from '../spinner/Spinner';
 import ErrorMesage from '../error/Error';
 
-import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { Link } from 'react-router-dom';
 
 const CharList = (props) => {
 
@@ -67,7 +66,7 @@ const CharList = (props) => {
                         <p>{nameChar}</p>
                     </div>
                     <div className="charList__buttonImg">
-                        <Link to='/char' className='button'>Character</Link>
+                        <Link to={`/char`} className='button'>Character</Link>
                     </div>
                 </div>
             )

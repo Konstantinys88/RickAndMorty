@@ -1,7 +1,6 @@
 import './App.scss';
 
 import Header from '../header/Header'
-// import CharPages from '../pages/charPages/CharPages';
 import LocationList from '../locationList/LocationList';
 import EpisodeList from '../episodeList/EpisodeList';
 
@@ -16,15 +15,12 @@ import SearchCharacters from '../searchCharacters/SearchCharacters';
 import FoundСharacter from '../foundСharacters/FoundСharacters';
 
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // import GetFromBD from '../../services/GetFromBD';
 
 
 const App = () => {
-
-	// const {getSearcCharacters, getCharactersAll} = GetFromBD();
-	// getCharactersAll().then(res => console.log(res));
 
 
 	const [selected, setSelected] = useState(33);
@@ -40,9 +36,6 @@ const App = () => {
 		setInputCharName(str);
 	}
 
-	// console.log(inputCharName);
-	// getSearcCharacters(inputCharName).then(res => console.log(res));
-
 
 	return (
 		<Router>
@@ -52,39 +45,43 @@ const App = () => {
 					<Header onCharNameSelected={onCharNameSelected} />
 					<div className='app__main'>
 
-						<Switch>
+						<Routes>
 
-							<Route exact path='/'>
-								<SearchCharacters onCharNameSelected={onCharNameSelected} />
-								<RandomCharacter />
-								<div className="app__charList">
-									<CharList onCharSelected={onCharSelected} />
-									<CharInfo charId={selected} />
-								</div>
+							<Route path='/' element={
+								<>
+									<SearchCharacters onCharNameSelected={onCharNameSelected} />
+									<RandomCharacter />
+									<div className="app__charList">
+										<CharList onCharSelected={onCharSelected} />
+										<CharInfo charId={selected} />
+									</div>
+								</>
+							}>
 							</Route>
 
-							<Route exact path='/location'>
-								<LocationList />
+							<Route path='/location'
+								element={<LocationList />}>
 							</Route>
 
-							<Route exact path='/episode'>
-								<EpisodeList />
+							<Route path='/episode'
+								element={<EpisodeList />}>
 							</Route>
 
-							<Route exact path='/char'>
+							<Route path='/char' element={
 								<div className="app__singleCgarpage">
 									<SingleCharPage charId={selected} />
 									<SingleEpisodeList episodeId={episodeId} />
 								</div>
+							}>
 							</Route>
 
-							<Route exact path='/foundСharacter'>
-								<FoundСharacter 
-								charName={inputCharName}
-								onCharSelected={onCharSelected} />
+							<Route path='/foundСharacter' element={
+								<FoundСharacter
+									charName={inputCharName}
+									onCharSelected={onCharSelected} />}>
 							</Route>
 
-						</Switch>
+						</Routes>
 					</div>
 
 				</div>

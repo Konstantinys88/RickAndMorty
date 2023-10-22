@@ -1,6 +1,6 @@
 import './foundCharacter.scss';
 
-import { Link } from 'react-router-dom/cjs/react-router-dom';
+import { Link } from 'react-router-dom';
 import GetFromBD from "../../services/GetFromBD";
 import { useEffect, useState } from "react";
 
@@ -12,10 +12,7 @@ const FoundСharacter = (props) => {
 
     const { charName } = props;
     const { getSearcCharacters, loading, error } = GetFromBD();
-
     const [char, setChar] = useState([]);
-
-    console.log(char)
 
     useEffect(() => {
         updateChar();
@@ -45,8 +42,8 @@ const FoundСharacter = (props) => {
 
             return (
                 <div className="foundChar__item"
-                key={item.id}
-                onClick={() => props.onCharSelected(item.id, item.episode.map(Number))}>
+                    key={item.id}
+                    onClick={() => props.onCharSelected(item.id, item.episode.map(Number))}>
                     <div>
                         <img className="foundChar__itemImg" src={item.image} alt={item.image} />
                     </div>
