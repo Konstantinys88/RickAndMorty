@@ -15,7 +15,7 @@ const FoundСharacter = (props) => {
 
     const [char, setChar] = useState([]);
 
-    console.log(char)
+    // console.log(char)
 
     useEffect(() => {
         updateChar();

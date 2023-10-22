@@ -2,6 +2,8 @@
 import './searchCharacters.scss';
 
 import { Link } from 'react-router-dom/cjs/react-router-dom';
+// import { useNavigate } from 'react-router';
+// нужна 6 версия
 import { useState } from 'react';
 
 
