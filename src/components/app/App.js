@@ -1,30 +1,30 @@
 import './App.scss';
-
-import Header from '../header/Header'
-import LocationList from '../locationList/LocationList';
-import EpisodeList from '../episodeList/EpisodeList';
-
-import RandomCharacter from '../randomCharacter/RandomCharacter';
-import CharList from '../charList/CharList';
-import CharInfo from '../charInfo/CharInfo';
-
-import SingleCharPage from '../singleCharPage/SingfleCharPage';
-import SingleEpisodeList from '../singleEpisodeList/SingleEpisodeList';
-import SingleLocation from '../singleLocation/SingleLocation';
-
-import SearchCharacters from '../searchCharacters/SearchCharacters';
-import FoundСharacter from '../foundСharacters/FoundСharacters';
-
-import Page404 from '../page404/Page404';
-
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 
-// import GetFromBD from '../../services/GetFromBD';
+import Header from '../header/Header'
+import Spinner from '../spinner/Spinner';
+
+const RandomCharacter = lazy(() => import('../randomCharacter/RandomCharacter'));
+const CharList = lazy(() => import('../charList/CharList'));
+const CharInfo = lazy(() => import('../charInfo/CharInfo'));
+
+const LocationList = lazy(() => import('../locationList/LocationList'));
+const EpisodeList = lazy(() => import('../episodeList/EpisodeList'));
+
+const SingleCharPage = lazy(() => import('../singleCharPage/SingfleCharPage'));
+const SingleEpisodeList = lazy(() => import('../singleEpisodeList/SingleEpisodeList'));
+const SingleLocation = lazy(() => import('../singleLocation/SingleLocation'));
+
+const SearchCharacters = lazy(() => import('../searchCharacters/SearchCharacters'));
+const FoundСharacter = lazy(() => import('../foundСharacters/FoundСharacters'));
+
+const Page404 = lazy(() => import('../page404/Page404'));
+
 
 
 const App = () => {
-
 
 	const [selected, setSelected] = useState(33);
 	const [episodeId, setEpisodeId] = useState([29])
@@ -39,58 +39,56 @@ const App = () => {
 		setInputCharName(str);
 	}
 
-
 	return (
 		<Router>
 			<div className="app">
 				<div className="app__container">
-
 					<Header onCharNameSelected={onCharNameSelected} />
 					<div className='app__main'>
+						<Suspense fallback={<Spinner />}>
+							<Routes>
 
-						<Routes>
+								<Route path='/' element={
+									<>
+										<SearchCharacters onCharNameSelected={onCharNameSelected} />
+										<RandomCharacter />
+										<div className="app__charList">
+											<CharList onCharSelected={onCharSelected} />
+											<CharInfo charId={selected} />
+										</div>
+									</>
+								}>
+								</Route>
 
-							<Route path='/' element={
-								<>
-									<SearchCharacters onCharNameSelected={onCharNameSelected} />
-									<RandomCharacter />
-									<div className="app__charList">
-										<CharList onCharSelected={onCharSelected} />
-										<CharInfo charId={selected} />
+								<Route path='/location'
+									element={<LocationList />}>
+								</Route>
+
+								<Route path='/episode'
+									element={<EpisodeList />}>
+								</Route>
+
+								<Route path='/char/:charId' element={
+									<div className="app__singleCgarpage">
+										<SingleCharPage charId={selected} />
+										<SingleEpisodeList episodeId={episodeId} />
 									</div>
-								</>
-							}>
-							</Route>
+								}>
+								</Route>
 
-							<Route path='/location'
-								element={<LocationList />}>
-							</Route>
+								<Route path='/foundСharacter' element={
+									<FoundСharacter
+										charName={inputCharName}
+										onCharSelected={onCharSelected} />}>
+								</Route>
 
-							<Route path='/episode'
-								element={<EpisodeList />}>
-							</Route>
+								<Route path='/singleLocation/:locationId' element={<SingleLocation />} />
 
-							<Route path='/char/:charId' element={
-								<div className="app__singleCgarpage">
-									<SingleCharPage charId={selected} />
-									<SingleEpisodeList episodeId={episodeId} />
-								</div>
-							}>
-							</Route>
+								<Route path='*' element={<Page404 />} />
 
-							<Route path='/foundСharacter' element={
-								<FoundСharacter
-									charName={inputCharName}
-									onCharSelected={onCharSelected} />}>
-							</Route>
-
-							<Route path='/singleLocation/:locationId' element={<SingleLocation />} />
-
-							<Route path='*' element={<Page404 />} />
-
-						</Routes>
+							</Routes>
+						</Suspense>
 					</div>
-
 				</div>
 			</div>
 		</Router>
