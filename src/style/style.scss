@@ -9,12 +9,12 @@
 }
 
 body {
-    background-image: url('../../src/resources/bg.jpeg');
-	background-size: cover;
-	background-repeat: no-repeat;
+    // background-image: url('../../src/resources/bg.jpeg');
+	// background-size: cover;
+	// background-repeat: no-repeat;
     
-	// background: -webkit-linear-gradient(90deg, #092cdc,#b80bc1);                         
-	// background: linear-gradient(90deg, #092cdc,#b80bc1);
+	background: -webkit-linear-gradient(90deg, #092cdc,#b80bc1);                         
+	background: linear-gradient(90deg, #092cdc,#b80bc1);
 	width: 100%;
 	min-height: 100vh;
 }
