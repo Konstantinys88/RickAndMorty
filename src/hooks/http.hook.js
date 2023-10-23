@@ -4,6 +4,10 @@ export const useHttp = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+
+    /**
+    * Функция отправляет запрос к API 
+    */
     const request = useCallback(async (url, method = 'GET', body = null, headers = { 'Content-Type': 'application/json' }) => {
 
         setLoading(true);
@@ -24,5 +28,6 @@ export const useHttp = () => {
     }, []);
 
     const clearError = useCallback(() => setError(null), []);
+    
     return { loading, request, error, clearError }
 }

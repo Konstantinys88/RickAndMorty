@@ -51,6 +51,10 @@ const GetFromBD = () => {
         return res.map(transformLocation);
     }
 
+    /**
+     * Функция принимает числов
+     * Функция возвращает обьект локации
+     */
     const getSingleLocation = async (id) => {
         const res = await request(`https://rickandmortyapi.com/api/location/${id}`);
         return transformLocation(res);
@@ -92,6 +96,9 @@ const GetFromBD = () => {
         }
     }
 
+    /**
+    * Для преобразования данных о локациях в обьект
+    */
     const transformLocation = (res) => {
         return {
             id: res.id,
@@ -103,6 +110,10 @@ const GetFromBD = () => {
         }
     }
 
+
+    /**
+    * Для преобразования данных о эпизодах в обьект
+    */
     const transformEpisode = (res) => {
         return {
             id: res.id,
