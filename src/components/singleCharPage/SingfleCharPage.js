@@ -1,6 +1,5 @@
 import './singleCharPage.scss';
 
-// import morty from '../../resources/morty.jpeg';
 import { useState, useEffect } from 'react';
 
 import GetFromBD from '../../services/GetFromBD';

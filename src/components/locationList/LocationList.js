@@ -4,6 +4,8 @@ import GetFromBD from '../../services/GetFromBD';
 import Spinner from '../spinner/Spinner';
 import ErrorMesage from '../error/Error';
 
+import { Link } from 'react-router-dom';
+
 import { useState, useEffect } from 'react';
 
 const LocationList = () => {
@@ -51,7 +53,7 @@ const LocationList = () => {
                         <p>The dimension in which the location is located: {item.dimension === "unknown" ? 'Unknown dimension' : item.dimension}</p>
                     </div>
                     <div className="location__linKWrapper">
-                        <a href='#' className='button location__link'>Page location</a>
+                        <Link to={'/singleLocation'} href='#' className='button location__link'>Page location</Link>
                     </div>
                 </li>
             )

@@ -10,6 +10,7 @@ import CharInfo from '../charInfo/CharInfo';
 
 import SingleCharPage from '../singleCharPage/SingfleCharPage';
 import SingleEpisodeList from '../singleEpisodeList/SingleEpisodeList';
+import SingleLocation from '../singleLocation/SingleLocation';
 
 import SearchCharacters from '../searchCharacters/SearchCharacters';
 import FoundСharacter from '../foundСharacters/FoundСharacters';
@@ -69,7 +70,7 @@ const App = () => {
 								element={<EpisodeList />}>
 							</Route>
 
-							<Route path='/char' element={
+							<Route path='/char/:charId' element={
 								<div className="app__singleCgarpage">
 									<SingleCharPage charId={selected} />
 									<SingleEpisodeList episodeId={episodeId} />
@@ -82,6 +83,8 @@ const App = () => {
 									charName={inputCharName}
 									onCharSelected={onCharSelected} />}>
 							</Route>
+
+							<Route path='/singleLocation' element={<SingleLocation />} />
 
 							<Route path='*' element={<Page404 />} />
 

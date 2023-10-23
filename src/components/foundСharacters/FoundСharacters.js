@@ -51,7 +51,7 @@ const FoundСharacter = (props) => {
                         <p>{nameChar}</p>
                     </div>
                     <div className="foundChar__buttonImg">
-                        <Link to='/char' className='button'>Character</Link>
+                        <Link to={`/char/${item.id}`} className='button'>Character</Link>
                     </div>
                 </div>
 
