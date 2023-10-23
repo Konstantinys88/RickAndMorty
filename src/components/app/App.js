@@ -84,7 +84,7 @@ const App = () => {
 									onCharSelected={onCharSelected} />}>
 							</Route>
 
-							<Route path='/singleLocation' element={<SingleLocation />} />
+							<Route path='/singleLocation/:locationId' element={<SingleLocation />} />
 
 							<Route path='*' element={<Page404 />} />
 

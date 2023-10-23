@@ -20,6 +20,7 @@
     }
 
     &__description {
+        text-align: center;
         flex: 1;
         font-size: 22px;
         font-style: normal;
@@ -30,8 +31,7 @@
         box-shadow: 5px 5px 10px 6px #000000;
         border-radius: 15px;
 
-        padding: 25px;
-
+        padding: 50px 25px 25px 25px;
     }
 
     &__descriptionText {}
