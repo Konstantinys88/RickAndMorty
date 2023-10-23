@@ -66,7 +66,7 @@ const CharList = (props) => {
                         <p>{nameChar}</p>
                     </div>
                     <div className="charList__buttonImg">
-                        <Link to={`/char/${item.id}`} className='button'>Character</Link>
+                        <Link to={`/character/${item.id}`} className='button'>Character</Link>
                     </div>
                 </div>
             )

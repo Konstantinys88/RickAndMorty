@@ -71,7 +71,7 @@ const App = () => {
 									element={<EpisodeList />}>
 								</Route>
 
-								<Route path='/char/:charId' element={
+								<Route path='/character/:charId' element={
 									<div className="app__singleCgarpage">
 										<SingleCharPage charId={selected} />
 										<SingleEpisodeList episodeId={episodeId} />
@@ -85,7 +85,7 @@ const App = () => {
 										onCharSelected={onCharSelected} />}>
 								</Route>
 
-								<Route path='/singleLocation/:locationId' element={<SingleLocation />} />
+								<Route path='/location/singleLocation/:locationId' element={<SingleLocation />} />
 
 								<Route path='*' element={<Page404 />} />
 

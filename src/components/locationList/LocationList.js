@@ -53,7 +53,7 @@ const LocationList = () => {
                         <p>The dimension in which the location is located: {item.dimension === "unknown" ? 'Unknown dimension' : item.dimension}</p>
                     </div>
                     <div className="location__linKWrapper">
-                        <Link to={`/singleLocation/${item.id}`} href='#' className='button location__link'>Page location</Link>
+                        <Link to={`/location/singleLocation/${item.id}`} href='#' className='button location__link'>Page location</Link>
                     </div>
                 </li>
             )
