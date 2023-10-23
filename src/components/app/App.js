@@ -14,6 +14,8 @@ import SingleEpisodeList from '../singleEpisodeList/SingleEpisodeList';
 import SearchCharacters from '../searchCharacters/SearchCharacters';
 import FoundСharacter from '../foundСharacters/FoundСharacters';
 
+import Page404 from '../page404/Page404';
+
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -80,6 +82,8 @@ const App = () => {
 									charName={inputCharName}
 									onCharSelected={onCharSelected} />}>
 							</Route>
+
+							<Route path='*' element={<Page404 />} />
 
 						</Routes>
 					</div>
