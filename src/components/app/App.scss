@@ -7,6 +7,8 @@
 	// background: linear-gradient(90deg, #092cdc,#b80bc1);
 	width: 100%;
 	min-height: 100vh;
+	
+	position: relative;
 
 	&__main {
 		@media (max-width: 1100px) {

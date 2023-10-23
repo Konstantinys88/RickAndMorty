@@ -10,8 +10,6 @@ import ErrorMesage from '../error/Error';
 const CharInfo = (props) => {
 
     const [char, setChar] = useState({});
-
-
     const { getCharacters, loading, error } = GetFromBD();
     const { charId } = props;
 
@@ -23,7 +21,6 @@ const CharInfo = (props) => {
         setChar(char);
     }
 
-
     const updateChar = () => {
         if (!charId) {
             return;
@@ -31,7 +28,6 @@ const CharInfo = (props) => {
         getCharacters(charId)
             .then(onCharLoaded);
     }
-
 
     const View = ({ char }) => {
         const { image, name, episode } = char;
@@ -74,4 +70,4 @@ const CharInfo = (props) => {
 }
 
 
-export default CharInfo
+export default CharInfo;

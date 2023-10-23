@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
-import Header from '../header/Header'
+import Header from '../header/Header';
+import Footer from '../footer/Footer';
 import Spinner from '../spinner/Spinner';
 
 const RandomCharacter = lazy(() => import('../randomCharacter/RandomCharacter'));
@@ -43,7 +44,9 @@ const App = () => {
 		<Router>
 			<div className="app">
 				<div className="app__container">
+
 					<Header onCharNameSelected={onCharNameSelected} />
+
 					<div className='app__main'>
 						<Suspense fallback={<Spinner />}>
 							<Routes>
@@ -90,6 +93,7 @@ const App = () => {
 						</Suspense>
 					</div>
 				</div>
+				<Footer />
 			</div>
 		</Router>
 	);
