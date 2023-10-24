@@ -10,7 +10,7 @@ const PostData = () => {
             },
             body: data
         });
-        return await res.json();
+    
     };
 
     return {
