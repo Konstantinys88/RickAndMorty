@@ -4,8 +4,11 @@ import './basic.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import PostData from '../../services/PostData';
 
 const Basic = () => {
+
+    const { postData } = PostData();
 
     const formik = useFormik({
         initialValues: {
@@ -22,6 +25,8 @@ const Basic = () => {
         onSubmit: values => {
             let res = JSON.stringify(values, null, 2);
             console.log(res);
+            // console.log('Form data', values);
+            postData('bd.json', res)
         }
     });
 
