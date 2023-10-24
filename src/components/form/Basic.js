@@ -20,19 +20,21 @@ const Basic = () => {
             terms: Yup.boolean().required('Consent is required').oneOf([true], 'Consent is required'),
         }),
         onSubmit: values => {
-            let res = JSON.stringify(values, null, 2);
-            console.log(res);
-        
+            // let res = JSON.stringify(values, null, 2);
+            // console.log(res);
             // console.log('Form data', values);
-            // fetch('bd.json', {
-            //     method: 'post',
-            //     headers: {
-            //         'Accept': 'application/json, text/plain, */*',
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body:  JSON.stringify(values)
-            // })
 
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                body: JSON.stringify({
+                    values
+                }),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+            })
+                .then((response) => response.json())
+                .then((json) => console.log(json));
         }
     });
 
