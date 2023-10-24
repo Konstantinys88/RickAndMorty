@@ -7,6 +7,8 @@ import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import Spinner from '../spinner/Spinner';
 
+import Basic from '../form/Basic';
+
 const RandomCharacter = lazy(() => import('../randomCharacter/RandomCharacter'));
 const CharList = lazy(() => import('../charList/CharList'));
 const CharInfo = lazy(() => import('../charInfo/CharInfo'));
@@ -86,6 +88,8 @@ const App = () => {
 								</Route>
 
 								<Route path='/location/singleLocation/:locationId' element={<SingleLocation />} />
+
+								<Route path='/form' element={<Basic />} />
 
 								<Route path='*' element={<Page404 />} />
 
