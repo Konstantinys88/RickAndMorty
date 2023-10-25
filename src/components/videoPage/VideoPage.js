@@ -1,5 +1,8 @@
 import './videoPage.scss';
-import ReactPlayer from "react-player";
+
+// import { useState } from "react";
+
+import video from '../../resources/s1e1.mp4'
 
 const VideoPage = () => {
 
@@ -7,15 +10,13 @@ const VideoPage = () => {
 
         <div className="videoPage">
             <div className="videoPage__player">
-                <ReactPlayer
-                    url='https://www.youtube.com/watch?v=3Vx0hrEOmY0'
-                    playing={true}
-                    controls={true}
-                />
+
+                <video className="videoPage__player" controls >
+                    <source src={video} type="video/mp4" />
+                </video>
+
             </div>
         </div>
-
-
     )
 }
 

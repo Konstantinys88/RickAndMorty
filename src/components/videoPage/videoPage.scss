@@ -1,8 +1,12 @@
 .videoPage {
-    margin-top: 100px;
+    margin-top: 50px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
 
 
-    &__player {}
+    &__player {
+        border-radius: 10px;
+        max-width: 800px;
+        width: 100%;
+    }
 }
