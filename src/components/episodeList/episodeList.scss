@@ -57,6 +57,7 @@
         left: 50%;
         display: flex;
         justify-content: center;
+        gap: 25px;
         // margin-bottom: 25px;
     }
 
@@ -65,5 +66,8 @@
         display: flex;
         align-self: center;
         padding: 0 15px;
+        @media (max-width: 460px) {
+            display: none;
+        }
     }
 }
