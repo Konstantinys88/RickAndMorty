@@ -7,6 +7,7 @@ import Spinner from '../spinner/Spinner';
 import ErrorMesage from '../error/Error';
 
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const EpisodeList = () => {
 
@@ -45,14 +46,16 @@ const EpisodeList = () => {
     const renderEpisodeList = (arr) => {
         const item = arr.map((item, index) => {
             return (
-                <li key={item.id} className='episodeList__item'>
-                    <div className="episodeList__imgBlock">
-                        <img src={imageEpisode} alt="imageEpisode" />
-                    </div>
-                    <div className="episodeList__descr">
-                        <p>Title: {item.name}</p>
-                        <p>Release date: {item.airDate}</p>
-                    </div>
+                <li key={item.id} >
+                    <Link className='episodeList__item' to={'/video'}>
+                        <div className="episodeList__imgBlock">
+                            <img src={imageEpisode} alt="imageEpisode" />
+                        </div>
+                        <div className="episodeList__descr">
+                            <p>Title: {item.name}</p>
+                            <p>Release date: {item.airDate}</p>
+                        </div>
+                    </Link>
                 </li>
             )
         });
