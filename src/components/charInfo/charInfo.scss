@@ -1,0 +1,51 @@
+
+.charInfo {
+    margin-top: 50px;
+    margin-left: 35px;
+    width: 360px;
+    height: 800px;
+    @media (max-width: 1100px) {
+        display: none;
+    }
+
+    &__img {
+        img {
+            width: 100%;
+            border-radius: 50%;
+            box-shadow: 0px 0px 10px 6px #c8f227;
+            border: 2px solid rgb(0, 0, 0);
+        }
+    }
+
+    &__name {
+        padding: 10px;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+        color: black;
+        text-align: center;
+    }
+
+    &__episode {
+        padding: 10px;
+        font-size: 26px;
+        font-style: normal;
+        font-weight: 900;
+        line-height: normal;
+        color: #7cf448;
+        text-align: center;
+        li {
+            margin-bottom: 15px;
+            padding: 5px;
+            box-shadow: 0px 0px 10px 6px #c8f227;
+            border: 2px solid rgb(0, 0, 0);
+        }
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+    }
+}
+

@@ -1,5 +1,4 @@
 
-// import arrow from '../../resources/arrow.png';
 
 import './charList.scss';
 
@@ -8,44 +7,35 @@ import GetFromBD from '../../services/GetFromBD';
 import Spinner from '../spinner/Spinner';
 import ErrorMesage from '../error/Error';
 
-const CharList = () => {
+import { Link } from 'react-router-dom';
 
-    const { getAllCharcters } = GetFromBD();
+const CharList = (props) => {
+
+    const { getAllCharcters, loading, error } = GetFromBD();
     const arrayCharacters = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const [arr, setArr] = useState(arrayCharacters);
 
-
     const [charList, setCharList] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [counter, setCounter] = useState(0)
-    const [error, setError] = useState(false);
 
 
     useEffect(() => {
         onRequest(arr);
-        console.log('useEffectList')
     }, [arr]);
 
     const onRequest = (arr) => {
         getAllCharcters(arr)
-            .then(onCharListLoaded)
-            .catch(onError);
+            .then(onCharListLoaded);
     }
 
     const onCharListLoaded = (newCharList) => {
         setCharList(charList => [...newCharList]);
-        setLoading(false);
-    }
-
-    const onError = () => {
-        setLoading(false);
-        setError(true);
     }
 
     const onNext = () => {
         const next = arr.map(item => item + 9);
         setArr(next);
-        setCounter(contenr => contenr + 1)
+        setCounter(contenr => contenr + 1);
     }
 
     const onBack = () => {
@@ -56,18 +46,31 @@ const CharList = () => {
 
     function renderItems(arr) {
         const item = arr.map((item, index) => {
+
+            let nameChar = ''
+            if (item.name.length > 19) {
+                nameChar = item.name.slice(0, 27) + '...';
+            } else {
+                nameChar = item.name;
+            }
+
             return (
-                <div key={item.id} className="charList__item">
+                <div key={item.id}
+                    onClick={() => props.onCharSelected(item.id, item.episode.map(Number))}
+                    className="charList__item">
                     <div>
                         <img className="charList__itemImg" src={item.image} alt={item.image} />
                     </div>
 
                     <div className="charList__charName">
-                        <p>{item.name}</p>
+                        <p>{nameChar}</p>
+                    </div>
+                    <div className="charList__buttonImg">
+                        <Link to={`/character/${item.id}`} className='button'>Character</Link>
                     </div>
                 </div>
             )
-        });
+        })
         return (
             <div className="charList__conteiner">
                 {item}
@@ -81,12 +84,10 @@ const CharList = () => {
     const errorMesage = error ? <ErrorMesage /> : null;
     const content = !(loading || error || !charList) ? items : null;
 
-
     const disableBack = (counter === 0) ? "disabled" : "";
-    const disableNext = (counter === 91) ? "disabled" : "";
-    const colorBack = (disableBack === "disabled") ? {'background' : 'red'} : {'background' : ''};
-    const colorNext = (disableNext === "disabled") ? {'background' : 'red'} : {'background' : ''};
-
+    const disableNext = (charList.length < 9) ? "disabled" : "";
+    const colorBack = (disableBack === "disabled") ? { 'background': 'red' } : { 'background': '' };
+    const colorNext = (disableNext === "disabled") ? { 'background': 'red' } : { 'background': '' };
 
     return (
         <div className="charList">
@@ -107,7 +108,6 @@ const CharList = () => {
                     className='button'>вперед</button>
             </div>
         </div >
-
     )
 }
 

@@ -1,9 +1,10 @@
 import './randomCharacter.scss';
 import '../../style/button.scss';
-import { useState, useEffect } from 'react';
 
-import GetFromBD from '../../services/GetFromBD';
 import rickAndMorty from '../../resources/pngwing.com.png';
+
+import { useState, useEffect } from 'react';
+import GetFromBD from '../../services/GetFromBD';
 import Spinner from '../spinner/Spinner';
 import ErrorMesage from '../error/Error';
 
@@ -11,10 +12,7 @@ import ErrorMesage from '../error/Error';
 const RandomCharacter = () => {
 
     const [char, setChar] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-
-    const { getCharacters } = GetFromBD();
+    const { getCharacters, loading, error } = GetFromBD();
 
     useEffect(() => {
         updateChar();
@@ -22,19 +20,12 @@ const RandomCharacter = () => {
 
     const onCharLoaded = (char) => {
         setChar(char);
-        setLoading(false);
     }
 
     const updateChar = () => {
         const id = Math.floor(Math.random() * (826 - 1)) + 1;
         getCharacters(id)
-            .then(onCharLoaded)
-            .catch(onError);
-    }
-
-    const onError = () => {
-        setLoading(false);
-        setError(true);
+            .then(onCharLoaded);
     }
 
     const View = ({ char }) => {
@@ -46,11 +37,11 @@ const RandomCharacter = () => {
                     <img className='randomCharacter__info-img' src={image} alt="morty" />
                 </div>
                 <div className="randomCharacter__descr">
-                    <p className='randomCharacter__descr-text'>Name: {name}</p>
-                    <p className='randomCharacter__descr-text'>Origin: {origin}</p>
-                    <p className='randomCharacter__descr-text'>Gender: {gender}</p>
-                    <p className='randomCharacter__descr-text'>Species: {species}</p>
-                    <p className='randomCharacter__descr-text'>Status: {status}</p>
+                    <p className='randomCharacter__descr-text'>Name: {name === 'unknown' ? 'Unknown' : name}</p>
+                    <p className='randomCharacter__descr-text'>Origin: {origin === 'unknown' ? 'Unknown' : origin}</p>
+                    <p className='randomCharacter__descr-text'>Gender: {gender === 'unknown' ? 'Unknown' : gender}</p>
+                    <p className='randomCharacter__descr-text'>Species: {species === 'unknown' ? 'Unknown' : species}</p>
+                    <p className='randomCharacter__descr-text'>Status: {status === 'unknown' ? 'Unknown' : status}</p>
                 </div>
             </div>
         )

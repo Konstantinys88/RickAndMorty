@@ -9,10 +9,14 @@
 }
 
 body {
-    background-image: url('../../src/resources/bg.jpeg');
-    background-size: cover;
-    background-repeat: no-repeat;
-
+    // background-image: url('../../src/resources/bg.jpeg');
+	// background-size: cover;
+	// background-repeat: no-repeat;
+    
+	background: -webkit-linear-gradient(90deg, #092cdc,#b80bc1);                         
+	background: linear-gradient(90deg, #092cdc,#b80bc1);
+	width: 100%;
+	min-height: 100vh;
 }
 
 ul,
@@ -53,12 +57,6 @@ input::-webkit-inner-spin-button {
     margin: 0; 
 }
 
-.app {
-    width: 1100px;
-    margin: 0 auto;
-    padding: 50px 0 50px 0;
-    position: relative;
-}
 
 main {
     margin-top: 50px;

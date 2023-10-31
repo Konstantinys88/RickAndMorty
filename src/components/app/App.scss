@@ -1,7 +1,37 @@
 .app {
-  &__main {
-    display: flex;
-  }
-  
+	// background-image: url('../../resources/bg.jpeg');
+	// background-size: cover;
+	// background-repeat: no-repeat;
+
+	// background: -webkit-linear-gradient(90deg, #092cdc,#b80bc1);                         
+	// background: linear-gradient(90deg, #092cdc,#b80bc1);
+	width: 100%;
+	min-height: 100vh;
+	
+	position: relative;
+
+	&__main {
+		@media (max-width: 1100px) {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			margin: 0 10px;
+		}
+	}
+
+	&__container {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 50px 5px 50px 5px;
+		position: relative;
+	}
+
+	&__charList {
+		display: flex;
+		@media (max-width: 1100px) {
+			justify-content: center;
+		}
+	}
 }
 
+                                     
